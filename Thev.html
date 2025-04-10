@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thevenin's Theorem Simulation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .graph-container {
+      margin: 20px 0;
+    }
+
+    .info {
+      margin-top: 30px;
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .info h2 {
+      margin-top: 0;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Thevenin's Theorem Simulation</h1>
+
+    <div class="input-group">
+      <label for="voltage">Voltage Source (V):</label>
+      <input type="number" id="voltage" placeholder="Enter voltage (e.g., 10V)">
+    </div>
+
+    <div class="input-group">
+      <label for="resistor1">Resistance of R1 (Ω):</label>
+      <input type="number" id="resistor1" placeholder="Enter resistance of R1">
+    </div>
+
+    <div class="input-group">
+      <label for="resistor2">Resistance of R2 (Ω):</label>
+      <input type="number" id="resistor2" placeholder="Enter resistance of R2">
+    </div>
+
+    <button onclick="simulate()">Calculate and Plot</button>
+
+    <div class="output" id="output"></div>
+
+    <div class="graph-container">
+      <canvas id="graphCanvas" width="400" height="200"></canvas>
+    </div>
+
+    <div class="info">
+      <h2>Thevenin's Theorem</h2>
+      <p>Thevenin's Theorem states that any linear circuit can be replaced by a single voltage source and a series resistor connected to a load. This simplifies circuit analysis.</p>
+      <p><strong>Steps:</strong></p>
+      <ol>
+        <li>Calculate the open-circuit voltage (Vth).</li>
+        <li>Find the equivalent resistance (Rth) by replacing voltage sources with a short circuit.</li>
+        <li>Connect Vth and Rth to the load resistor to analyze the circuit.</li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    function simulate() {
+      const voltage = parseFloat(document.getElementById("voltage").value);
+      const resistor1 = parseFloat(document.getElementById("resistor1").value);
+      const resistor2 = parseFloat(document.getElementById("resistor2").value);
+      const output = document.getElementById("output");
+
+      output.innerHTML = ""; // Clear previous results
+
+      if (isNaN(voltage) || isNaN(resistor1) || isNaN(resistor2)) {
+        output.innerHTML = "Please provide valid values for voltage and resistances.";
+        return;
+      }
+
+      // Calculate Thevenin Equivalent Voltage (Vth)
+      const vth = voltage * (resistor2 / (resistor1 + resistor2));
+
+      // Calculate Thevenin Equivalent Resistance (Rth)
+      const rth = (resistor1 * resistor2) / (resistor1 + resistor2);
+
+      output.innerHTML = `
+        <p><strong>Thevenin Equivalent Voltage (Vth):</strong> ${vth.toFixed(2)} V</p>
+        <p><strong>Thevenin Equivalent Resistance (Rth):</strong> ${rth.toFixed(2)} Ω</p>
+      `;
+
+      // Plot the graph
+      const ctx = document.getElementById("graphCanvas").getContext("2d");
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: ["R1", "R2", "Rth"],
+          datasets: [{
+            label: "Resistances and Equivalent Voltage",
+            data: [resistor1, resistor2, rth],
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(75, 192, 192, 1)",
+            borderWidth: 1,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>

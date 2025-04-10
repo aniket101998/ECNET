@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sampling Theorem Simulation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .graph-container {
+      margin: 20px 0;
+    }
+
+    canvas {
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Sampling Theorem Simulation</h1>
+
+    <div class="input-group">
+      <label for="fs">Sampling Frequency (fs):</label>
+      <input type="number" id="fs" placeholder="Enter sampling frequency" value="50">
+    </div>
+
+    <div class="input-group">
+      <label for="fm">Message Signal Frequency (fm):</label>
+      <input type="number" id="fm" placeholder="Enter message frequency" value="10">
+    </div>
+
+    <div class="input-group">
+      <label for="amp">Amplitude:</label>
+      <input type="number" id="amp" placeholder="Enter amplitude" value="4">
+    </div>
+
+    <button onclick="simulateSampling()">Generate Sampling Signal</button>
+    <button onclick="downloadPDF()">Download PDF</button>
+
+    <div class="graph-container">
+      <h3>Original Signal</h3>
+      <canvas id="originalSignalCanvas"></canvas>
+    </div>
+
+    <div class="graph-container">
+      <h3>Sampled Signal</h3>
+      <canvas id="sampledSignalCanvas"></canvas>
+    </div>
+
+    <div class="graph-container">
+      <h3>Reconstructed Signal</h3>
+      <canvas id="reconstructedSignalCanvas"></canvas>
+    </div>
+  </div>
+
+  <script>
+    function sinc(x) {
+      return x === 0 ? 1 : Math.sin(Math.PI * x) / (Math.PI * x);
+    }
+
+    function simulateSampling() {
+      const fs = parseFloat(document.getElementById("fs").value);
+      const fm = parseFloat(document.getElementById("fm").value);
+      const amp = parseFloat(document.getElementById("amp").value);
+      const t = Array.from({ length: 1001 }, (_, i) => i * 0.001);
+      const original = t.map(time => amp * Math.sin(2 * Math.PI * fm * time));
+      const sampleT = t.filter((_, i) => i % Math.round(1000 / fs) === 0);
+      const sampled = sampleT.map(time => amp * Math.sin(2 * Math.PI * fm * time));
+      const reconstructed = t.map(time => {
+        return sampled.reduce((sum, samp, i) => {
+          return sum + samp * sinc(fs * (time - sampleT[i]));
+        }, 0);
+      });
+
+      function plotGraph(canvasId, label, data, xLabels) {
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: xLabels || t,
+            datasets: [{
+              label: label,
+              data: data,
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+              fill: false,
+              pointRadius: xLabels ? 4 : 0,
+              pointBackgroundColor: 'red'
+            }]
+          },
+          options: { responsive: true }
+        });
+      }
+
+      plotGraph('originalSignalCanvas', 'Original Signal', original);
+      plotGraph('sampledSignalCanvas', 'Sampled Signal', sampled, sampleT);
+      plotGraph('reconstructedSignalCanvas', 'Reconstructed Signal', reconstructed);
+    }
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("Sampling Theorem Simulation", 10, 10);
+      doc.text("Original Signal", 10, 20);
+      doc.addImage(document.getElementById('originalSignalCanvas').toDataURL(), 'JPEG', 10, 30, 180, 60);
+      doc.text("Sampled Signal", 10, 100);
+      doc.addImage(document.getElementById('sampledSignalCanvas').toDataURL(), 'JPEG', 10, 110, 180, 60);
+      doc.text("Reconstructed Signal", 10, 180);
+      doc.addImage(document.getElementById('reconstructedSignalCanvas').toDataURL(), 'JPEG', 10, 190, 180, 60);
+      doc.save("Sampling_Theorem_Simulation.pdf");
+    }
+  </script>
+</body>
+</html>

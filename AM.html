@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amplitude Modulation (AM) Simulation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .graph-container {
+      margin: 20px 0;
+    }
+    canvas {
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Amplitude Modulation (AM) Simulation</h1>
+
+    <div class="input-group">
+      <label for="Ac">Carrier Amplitude (Ac):</label>
+      <input type="number" id="Ac" value="2">
+    </div>
+    <div class="input-group">
+      <label for="fc">Carrier Frequency (fc):</label>
+      <input type="number" id="fc" value="0.5">
+    </div>
+    <div class="input-group">
+      <label for="Am">Message Signal Amplitude (Am):</label>
+      <input type="number" id="Am" value="0.5">
+    </div>
+    <div class="input-group">
+      <label for="fm">Message Signal Frequency (fm):</label>
+      <input type="number" id="fm" value="0.05">
+    </div>
+    <div class="input-group">
+      <label for="ka">Modulation Depth (ka):</label>
+      <input type="number" id="ka" value="1">
+    </div>
+
+    <button onclick="simulateAM()">Generate AM Signal</button>
+    <button onclick="downloadPDF()">Download PDF</button>
+
+    <div class="graph-container">
+      <h3>Message Signal</h3>
+      <canvas id="messageSignalCanvas"></canvas>
+    </div>
+    <div class="graph-container">
+      <h3>Carrier Signal</h3>
+      <canvas id="carrierSignalCanvas"></canvas>
+    </div>
+    <div class="graph-container">
+      <h3>Amplitude Modulated (AM) Signal</h3>
+      <canvas id="amSignalCanvas"></canvas>
+    </div>
+  </div>
+
+  <script>
+    function simulateAM() {
+      const Ac = parseFloat(document.getElementById("Ac").value);
+      const fc = parseFloat(document.getElementById("fc").value);
+      const Am = parseFloat(document.getElementById("Am").value);
+      const fm = parseFloat(document.getElementById("fm").value);
+      const ka = parseFloat(document.getElementById("ka").value);
+
+      const t = Array.from({ length: 501 }, (_, i) => i * 0.1);
+      const ct = t.map(time => Ac * Math.cos(2 * Math.PI * fc * time));
+      const mt = t.map(time => Am * Math.cos(2 * Math.PI * fm * time));
+      const AM = t.map((time, i) => ct[i] * (1 + ka * mt[i]));
+
+      function plotGraph(canvasId, label, data) {
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: t,
+            datasets: [{
+              label: label,
+              data: data,
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+              fill: false
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      }
+
+      plotGraph('messageSignalCanvas', 'Message Signal', mt);
+      plotGraph('carrierSignalCanvas', 'Carrier Signal', ct);
+      plotGraph('amSignalCanvas', 'AM Signal', AM);
+    }
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF();
+      pdf.text("Amplitude Modulation (AM) Simulation", 10, 10);
+      pdf.text("Message Signal", 10, 20);
+      pdf.addImage(document.getElementById("messageSignalCanvas").toDataURL(), 'PNG', 10, 30, 180, 60);
+      pdf.text("Carrier Signal", 10, 100);
+      pdf.addImage(document.getElementById("carrierSignalCanvas").toDataURL(), 'PNG', 10, 110, 180, 60);
+      pdf.text("AM Signal", 10, 180);
+      pdf.addImage(document.getElementById("amSignalCanvas").toDataURL(), 'PNG', 10, 190, 180, 60);
+      pdf.save("AM_Simulation.pdf");
+    }
+  </script>
+</body>
+</html>

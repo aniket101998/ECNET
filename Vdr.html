@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voltage Divider Simulation</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .chart-container {
+      margin-top: 30px;
+    }
+
+    .output-container {
+      margin-top: 20px;
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .output-container h2 {
+      margin-top: 0;
+    }
+
+    .config-toggle {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Voltage Divider Simulation</h1>
+
+    <div class="input-group">
+      <label for="supplyVoltage">Supply Voltage (V):</label>
+      <input type="number" id="supplyVoltage" placeholder="Enter supply voltage">
+    </div>
+
+    <div class="input-group">
+      <label for="resistor1">Resistor 1 (R1 - Ω):</label>
+      <input type="number" id="resistor1" placeholder="Enter resistor 1 value (Ω)">
+    </div>
+
+    <div class="input-group">
+      <label for="resistor2">Resistor 2 (R2 - Ω):</label>
+      <input type="number" id="resistor2" placeholder="Enter resistor 2 value (Ω)">
+    </div>
+
+    <button onclick="simulateVoltageDivider()">Simulate Circuit</button>
+
+    <div class="chart-container">
+      <canvas id="voltageDividerChart"></canvas>
+    </div>
+
+    <div class="output-container" id="outputContainer" style="display: none;">
+      <h2>Results</h2>
+      <p><strong>Output Voltage (V) across Resistor 1:</strong> <span id="outputVoltageR1">-</span> V</p>
+      <p><strong>Output Voltage (V) across Resistor 2:</strong> <span id="outputVoltageR2">-</span> V</p>
+    </div>
+
+  </div>
+
+  <script>
+    // Initialize Chart.js
+    const ctx = document.getElementById('voltageDividerChart').getContext('2d');
+    const voltageDividerChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Resistor 1', 'Resistor 2'],
+        datasets: [{
+          label: 'Voltage Across Resistor (V)',
+          data: [],
+          backgroundColor: ['#4caf50', '#2196f3'],
+          borderColor: ['#388e3c', '#1976d2'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Voltage (V)'
+            }
+          }
+        }
+      }
+    });
+
+    // Function to simulate the voltage divider circuit
+    function simulateVoltageDivider() {
+      const supplyVoltage = parseFloat(document.getElementById('supplyVoltage').value);
+      const resistor1 = parseFloat(document.getElementById('resistor1').value);
+      const resistor2 = parseFloat(document.getElementById('resistor2').value);
+      const outputContainer = document.getElementById('outputContainer');
+
+      // Validation for user inputs
+      if (isNaN(supplyVoltage) || supplyVoltage <= 0) {
+        alert('Please enter a valid positive supply voltage value.');
+        return;
+      }
+      if (isNaN(resistor1) || resistor1 <= 0) {
+        alert('Please enter a valid positive resistance value for Resistor 1.');
+        return;
+      }
+      if (isNaN(resistor2) || resistor2 <= 0) {
+        alert('Please enter a valid positive resistance value for Resistor 2.');
+        return;
+      }
+
+      // Calculate the output voltage across Resistor 1 and Resistor 2
+      const totalResistance = resistor1 + resistor2; // Total resistance for series connection
+      const outputVoltageR1 = (resistor1 / totalResistance) * supplyVoltage; // Voltage across Resistor 1
+      const outputVoltageR2 = (resistor2 / totalResistance) * supplyVoltage; // Voltage across Resistor 2
+
+      // Update the chart with the results
+      voltageDividerChart.data.datasets[0].data = [outputVoltageR1, outputVoltageR2];
+      voltageDividerChart.update();
+
+      // Display the output voltage values
+      outputContainer.style.display = 'block';
+      document.getElementById('outputVoltageR1').textContent = outputVoltageR1.toFixed(2);
+      document.getElementById('outputVoltageR2').textContent = outputVoltageR2.toFixed(2);
+    }
+  </script>
+</body>
+</html>

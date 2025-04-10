@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superposition Theorem Simulation with Graph</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .chart-container {
+      margin-top: 30px;
+    }
+
+    .info {
+      margin-top: 30px;
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .info h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Superposition Theorem Simulation with Graph</h1>
+
+    <div class="input-group">
+      <label for="voltage1">Voltage Source 1 (V):</label>
+      <input type="number" id="voltage1" placeholder="Enter voltage of Source 1 (e.g., 10V)">
+    </div>
+
+    <div class="input-group">
+      <label for="voltage2">Voltage Source 2 (V):</label>
+      <input type="number" id="voltage2" placeholder="Enter voltage of Source 2 (e.g., 5V)">
+    </div>
+
+    <div class="input-group">
+      <label for="resistor1">Resistance R1 (Ω):</label>
+      <input type="number" id="resistor1" placeholder="Enter resistance R1">
+    </div>
+
+    <div class="input-group">
+      <label for="resistor2">Resistance R2 (Ω):</label>
+      <input type="number" id="resistor2" placeholder="Enter resistance R2">
+    </div>
+
+    <div class="input-group">
+      <label for="loadResistor">Load Resistance RL (Ω):</label>
+      <input type="number" id="loadResistor" placeholder="Enter load resistance RL">
+    </div>
+
+    <button onclick="simulate()">Calculate and Plot Graph</button>
+
+    <div class="output" id="output"></div>
+
+    <div class="chart-container">
+      <canvas id="currentChart" width="400" height="200"></canvas>
+    </div>
+
+    <div class="info">
+      <h2>Superposition Theorem</h2>
+      <p>The Superposition Theorem states that in a linear circuit with multiple independent sources, the current or voltage for any element in the circuit is the algebraic sum of the currents or voltages caused by each independent source acting alone.</p>
+      <p><strong>Steps:</strong></p>
+      <ol>
+        <li>Turn on one source while turning off all others (replace voltage sources with short circuits and current sources with open circuits).</li>
+        <li>Calculate the current or voltage for each source independently.</li>
+        <li>Sum up the contributions from all sources to find the total current or voltage.</li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    function simulate() {
+      const voltage1 = parseFloat(document.getElementById("voltage1").value);
+      const voltage2 = parseFloat(document.getElementById("voltage2").value);
+      const resistor1 = parseFloat(document.getElementById("resistor1").value);
+      const resistor2 = parseFloat(document.getElementById("resistor2").value);
+      const loadResistor = parseFloat(document.getElementById("loadResistor").value);
+      const output = document.getElementById("output");
+
+      output.innerHTML = ""; // Clear previous results
+
+      if (isNaN(voltage1) || isNaN(voltage2) || isNaN(resistor1) || isNaN(resistor2) || isNaN(loadResistor)) {
+        output.innerHTML = "Please provide valid values for all inputs.";
+        return;
+      }
+
+      // Equivalent resistance when only Voltage Source 1 is active
+      const r_eq1 = ((resistor2 * loadResistor) / (resistor2 + loadResistor)) + resistor1;
+      const i1 = voltage1 / r_eq1;
+
+      // Equivalent resistance when only Voltage Source 2 is active
+      const r_eq2 = ((resistor1 * loadResistor) / (resistor1 + loadResistor)) + resistor2;
+      const i2 = voltage2 / r_eq2;
+
+      // Total current in the load resistor by superposition
+      const totalCurrent = i1 + i2;
+
+      output.innerHTML = `
+        <p><strong>Current due to Voltage Source 1 (I1):</strong> ${i1.toFixed(2)} A</p>
+        <p><strong>Current due to Voltage Source 2 (I2):</strong> ${i2.toFixed(2)} A</p>
+        <p><strong>Total Current in Load Resistor (IL):</strong> ${totalCurrent.toFixed(2)} A</p>
+      `;
+
+      // Update graph
+      const ctx = document.getElementById("currentChart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Source 1 Current (I1)", "Source 2 Current (I2)", "Total Current (IL)"],
+          datasets: [{
+            label: "Current (A)",
+            data: [i1.toFixed(2), i2.toFixed(2), totalCurrent.toFixed(2)],
+            backgroundColor: ["#4caf50", "#2196f3", "#ff9800"]
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequency Shift Keying (FSK) Simulation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .graph-container {
+      margin: 20px 0;
+    }
+
+    canvas {
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Frequency Shift Keying (FSK) Simulation</h1>
+
+    <div class="input-group">
+      <label for="fc1">Carrier Frequency 1 (fc1):</label>
+      <input type="number" id="fc1" placeholder="Enter first carrier frequency" value="10">
+    </div>
+
+    <div class="input-group">
+      <label for="fc2">Carrier Frequency 2 (fc2):</label>
+      <input type="number" id="fc2" placeholder="Enter second carrier frequency" value="30">
+    </div>
+
+    <div class="input-group">
+      <label for="fp">Message Signal Frequency (fp):</label>
+      <input type="number" id="fp" placeholder="Enter message frequency" value="5">
+    </div>
+
+    <div class="input-group">
+      <label for="amp">Amplitude:</label>
+      <input type="number" id="amp" placeholder="Enter amplitude" value="4">
+    </div>
+
+    <button onclick="simulateFSK()">Generate FSK Signal</button>
+    <button onclick="downloadPDF()">Download PDF</button>
+
+    <div class="graph-container">
+      <h3>Carrier Signal 1</h3>
+      <canvas id="carrierSignalCanvas1"></canvas>
+    </div>
+
+    <div class="graph-container">
+      <h3>Carrier Signal 2</h3>
+      <canvas id="carrierSignalCanvas2"></canvas>
+    </div>
+
+    <div class="graph-container">
+      <h3>Binary Message Signal</h3>
+      <canvas id="messageSignalCanvas"></canvas>
+    </div>
+
+    <div class="graph-container">
+      <h3>FSK Modulated Signal</h3>
+      <canvas id="fskSignalCanvas"></canvas>
+    </div>
+  </div>
+
+  <script>
+    function simulateFSK() {
+      const fc1 = parseFloat(document.getElementById("fc1").value);
+      const fc2 = parseFloat(document.getElementById("fc2").value);
+      const fp = parseFloat(document.getElementById("fp").value);
+      const amp = parseFloat(document.getElementById("amp").value);
+      const t = Array.from({ length: 1001 }, (_, i) => i * 0.001);
+      const carrier1 = t.map(time => amp * Math.sin(2 * Math.PI * fc1 * time));
+      const carrier2 = t.map(time => amp * Math.sin(2 * Math.PI * fc2 * time));
+      const message = t.map(time => (Math.sign(Math.sin(2 * Math.PI * fp * time)) + 1) / 2);
+      const fsk = t.map((_, i) => message[i] ? carrier1[i] : carrier2[i]);
+
+      function plotGraph(canvasId, label, data) {
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: t,
+            datasets: [{
+              label: label,
+              data: data,
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+              fill: false
+            }]
+          },
+          options: { responsive: true }
+        });
+      }
+
+      plotGraph('carrierSignalCanvas1', 'Carrier Signal 1', carrier1);
+      plotGraph('carrierSignalCanvas2', 'Carrier Signal 2', carrier2);
+      plotGraph('messageSignalCanvas', 'Binary Message Signal', message);
+      plotGraph('fskSignalCanvas', 'FSK Signal', fsk);
+    }
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("Frequency Shift Keying (FSK) Simulation", 10, 10);
+      doc.text("Carrier Signal 1", 10, 20);
+      doc.addImage(document.getElementById('carrierSignalCanvas1').toDataURL(), 'JPEG', 10, 30, 180, 60);
+      doc.text("Carrier Signal 2", 10, 100);
+      doc.addImage(document.getElementById('carrierSignalCanvas2').toDataURL(), 'JPEG', 10, 110, 180, 60);
+      doc.text("Binary Message Signal", 10, 180);
+      doc.addImage(document.getElementById('messageSignalCanvas').toDataURL(), 'JPEG', 10, 190, 180, 60);
+      doc.text("FSK Signal", 10, 260);
+      doc.addImage(document.getElementById('fskSignalCanvas').toDataURL(), 'JPEG', 10, 270, 180, 60);
+      doc.save("FSK_Simulation.pdf");
+    }
+  </script>
+</body>
+</html>

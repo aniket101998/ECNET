@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequency Modulation (FM) Simulation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .graph-container {
+      margin: 20px 0;
+    }
+
+    canvas {
+      width: 100%;
+      height: 300px;
+    }
+
+    .explanation {
+      margin-top: 20px;
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .explanation h2 {
+      margin-top: 0;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Frequency Modulation (FM) Simulation</h1>
+
+    <div class="input-group">
+      <label for="Ac">Carrier Amplitude (Ac):</label>
+      <input type="number" id="Ac" placeholder="Enter carrier amplitude (e.g., 5)" value="5">
+    </div>
+
+    <div class="input-group">
+      <label for="fc">Carrier Frequency (fc):</label>
+      <input type="number" id="fc" placeholder="Enter carrier frequency (e.g., 100)" value="100">
+    </div>
+
+    <div class="input-group">
+      <label for="Am">Message Signal Amplitude (Am):</label>
+      <input type="number" id="Am" placeholder="Enter message amplitude (e.g., 1)" value="1">
+    </div>
+
+    <div class="input-group">
+      <label for="fm">Message Signal Frequency (fm):</label>
+      <input type="number" id="fm" placeholder="Enter message frequency (e.g., 10)" value="10">
+    </div>
+
+    <div class="input-group">
+      <label for="m">Modulation Index (m):</label>
+      <input type="number" id="m" placeholder="Enter modulation index (e.g., 5)" value="5">
+    </div>
+
+    <button onclick="simulateFM()">Generate FM Signal</button>
+    <button onclick="downloadPDF()">Download PDF</button>
+
+    <div class="graph-container">
+      <h3>Message Signal</h3>
+      <canvas id="messageSignalCanvas"></canvas>
+    </div>
+
+    <div class="graph-container">
+      <h3>Carrier Signal</h3>
+      <canvas id="carrierSignalCanvas"></canvas>
+    </div>
+
+    <div class="graph-container">
+      <h3>Frequency Modulated (FM) Signal</h3>
+      <canvas id="fmSignalCanvas"></canvas>
+    </div>
+  </div>
+
+  <script>
+    function simulateFM() {
+      const Ac = parseFloat(document.getElementById("Ac").value);
+      const fc = parseFloat(document.getElementById("fc").value);
+      const Am = parseFloat(document.getElementById("Am").value);
+      const fm = parseFloat(document.getElementById("fm").value);
+      const m = parseFloat(document.getElementById("m").value);
+      const t = Array.from({ length: 501 }, (_, i) => i * 0.001);
+      const ct = t.map(time => Ac * Math.cos(2 * Math.PI * fc * time));
+      const mt = t.map(time => Am * Math.sin(2 * Math.PI * fm * time));
+      const FM = t.map((time, i) => Ac * Math.cos(2 * Math.PI * fc * time + m * Math.sin(2 * Math.PI * fm * time)));
+
+      function plotGraph(canvasId, label, data) {
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: t,
+            datasets: [{
+              label: label,
+              data: data,
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+              fill: false
+            }]
+          },
+          options: { responsive: true }
+        });
+      }
+
+      plotGraph('messageSignalCanvas', 'Message Signal', mt);
+      plotGraph('carrierSignalCanvas', 'Carrier Signal', ct);
+      plotGraph('fmSignalCanvas', 'FM Signal', FM);
+    }
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("Frequency Modulation (FM) Simulation", 10, 10);
+      doc.text("Message Signal", 10, 20);
+      doc.addImage(document.getElementById('messageSignalCanvas').toDataURL(), 'JPEG', 10, 30, 180, 60);
+      doc.text("Carrier Signal", 10, 100);
+      doc.addImage(document.getElementById('carrierSignalCanvas').toDataURL(), 'JPEG', 10, 110, 180, 60);
+      doc.text("FM Signal", 10, 180);
+      doc.addImage(document.getElementById('fmSignalCanvas').toDataURL(), 'JPEG', 10, 190, 180, 60);
+      doc.save("FM_Simulation.pdf");
+    }
+  </script>
+</body>
+</html>

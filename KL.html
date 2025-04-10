@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kirchhoff's Laws (KVL & KCL) Circuit Tool</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjs/lib/browser/math.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .chart-container {
+      margin-top: 30px;
+    }
+
+    .output-container {
+      margin-top: 20px;
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .output-container h2 {
+      margin-top: 0;
+    }
+
+    .step-by-step {
+      margin-top: 20px;
+      background-color: #ffffff;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Kirchhoff's Laws (KVL & KCL) Circuit Tool</h1>
+
+    <div class="input-group">
+      <label for="resistor1">Resistor 1 (Ω):</label>
+      <input type="number" id="resistor1" placeholder="Enter resistance value for R1">
+    </div>
+
+    <div class="input-group">
+      <label for="resistor2">Resistor 2 (Ω):</label>
+      <input type="number" id="resistor2" placeholder="Enter resistance value for R2">
+    </div>
+
+    <div class="input-group">
+      <label for="voltage">Voltage (V):</label>
+      <input type="number" id="voltage" placeholder="Enter supply voltage">
+    </div>
+
+    <button onclick="applyKCL()">Apply Kirchhoff's Current Law (KCL)</button>
+    <button onclick="applyKVL()">Apply Kirchhoff's Voltage Law (KVL)</button>
+
+    <div class="chart-container">
+      <canvas id="circuitChart"></canvas>
+    </div>
+
+    <div class="output-container" id="kclOutputContainer" style="display: none;">
+      <h2>Results for KCL</h2>
+      <p><strong>Current through Resistor 1 (I1):</strong> <span id="kclCurrentR1">-</span> A</p>
+      <p><strong>Current through Resistor 2 (I2):</strong> <span id="kclCurrentR2">-</span> A</p>
+      <p><strong>Total Current (I):</strong> <span id="kclTotalCurrent">-</span> A</p>
+    </div>
+
+    <div class="output-container" id="kvlOutputContainer" style="display: none;">
+      <h2>Results for KVL</h2>
+      <p><strong>Voltage across Resistor 1 (V1):</strong> <span id="kvlVoltageR1">-</span> V</p>
+      <p><strong>Voltage across Resistor 2 (V2):</strong> <span id="kvlVoltageR2">-</span> V</p>
+      <p><strong>Supply Voltage:</strong> <span id="supplyVoltage">-</span> V</p>
+    </div>
+
+    <div class="step-by-step" id="stepByStep" style="display: none;">
+      <h2>Step-by-Step Analysis</h2>
+      <p id="steps"></p>
+    </div>
+
+  </div>
+
+  <script>
+    // Global variables to hold the chart and data
+    let chart;
+
+    // Update the chart when KCL is applied
+    function applyKCL() {
+      const resistor1 = parseFloat(document.getElementById('resistor1').value);
+      const resistor2 = parseFloat(document.getElementById('resistor2').value);
+      const voltage = parseFloat(document.getElementById('voltage').value);
+
+      // Validation for user inputs
+      if (isNaN(resistor1) || resistor1 <= 0) {
+        alert('Please enter a valid positive resistance value for Resistor 1.');
+        return;
+      }
+      if (isNaN(resistor2) || resistor2 <= 0) {
+        alert('Please enter a valid positive resistance value for Resistor 2.');
+        return;
+      }
+      if (isNaN(voltage) || voltage <= 0) {
+        alert('Please enter a valid positive voltage value.');
+        return;
+      }
+
+      // Applying Kirchhoff's Current Law (KCL)
+      const totalResistance = resistor1 + resistor2; // Series configuration
+      const current = voltage / totalResistance; // Using Ohm's Law (I = V / R)
+
+      // Calculate individual currents
+      const currentR1 = voltage / resistor1; // Current through Resistor 1
+      const currentR2 = voltage / resistor2; // Current through Resistor 2
+
+      // Update KCL output container
+      document.getElementById('kclCurrentR1').textContent = currentR1.toFixed(2);
+      document.getElementById('kclCurrentR2').textContent = currentR2.toFixed(2);
+      document.getElementById('kclTotalCurrent').textContent = current.toFixed(2);
+      document.getElementById('kclOutputContainer').style.display = 'block';
+
+      // Step-by-step explanation for KCL
+      const steps = `
+        <p><strong>Kirchhoff's Current Law (KCL) Analysis:</strong></p>
+        <p>The total current in the circuit is given by Ohm's law: I = V / R</p>
+        <p>The current through Resistor 1 (I1) is calculated by I1 = V / R1 = ${currentR1.toFixed(2)} A</p>
+        <p>The current through Resistor 2 (I2) is calculated by I2 = V / R2 = ${currentR2.toFixed(2)} A</p>
+        <p>Therefore, the total current flowing through the circuit is: ${current.toFixed(2)} A</p>
+      `;
+      document.getElementById('steps').innerHTML = steps;
+
+      // Update chart for KCL
+      updateChart([currentR1, currentR2], ['Resistor 1 (I1)', 'Resistor 2 (I2)'], 'Current through Resistor (A)');
+    }
+
+    // Update the chart when KVL is applied
+    function applyKVL() {
+      const resistor1 = parseFloat(document.getElementById('resistor1').value);
+      const resistor2 = parseFloat(document.getElementById('resistor2').value);
+      const voltage = parseFloat(document.getElementById('voltage').value);
+
+      // Validation for user inputs
+      if (isNaN(resistor1) || resistor1 <= 0) {
+        alert('Please enter a valid positive resistance value for Resistor 1.');
+        return;
+      }
+      if (isNaN(resistor2) || resistor2 <= 0) {
+        alert('Please enter a valid positive resistance value for Resistor 2.');
+        return;
+      }
+      if (isNaN(voltage) || voltage <= 0) {
+        alert('Please enter a valid positive voltage value.');
+        return;
+      }
+
+      // Applying Kirchhoff's Voltage Law (KVL)
+      const totalResistance = resistor1 + resistor2; // Series configuration
+      const current = voltage / totalResistance; // Using Ohm's Law (I = V / R)
+
+      // Calculate voltage drops across each resistor
+      const voltageR1 = current * resistor1;
+      const voltageR2 = current * resistor2;
+
+      // Update KVL output container
+      document.getElementById('kvlVoltageR1').textContent = voltageR1.toFixed(2);
+      document.getElementById('kvlVoltageR2').textContent = voltageR2.toFixed(2);
+      document.getElementById('supplyVoltage').textContent = voltage.toFixed(2);
+      document.getElementById('kvlOutputContainer').style.display = 'block';
+
+      // Step-by-step explanation for KVL
+      const steps = `
+        <p><strong>Kirchhoff's Voltage Law (KVL) Analysis:</strong></p>
+        <p>The sum of the voltage drops across the resistors must equal the supply voltage (KVL).</p>
+        <p>The voltage across Resistor 1 (V1) is calculated by V1 = I * R1 = ${voltageR1.toFixed(2)} V</p>
+        <p>The voltage across Resistor 2 (V2) is calculated by V2 = I * R2 = ${voltageR2.toFixed(2)} V</p>
+        <p>The total supply voltage (V) is: ${voltage.toFixed(2)} V</p>
+      `;
+      document.getElementById('steps').innerHTML = steps;
+
+      // Update chart for KVL
+      updateChart([voltageR1, voltageR2], ['Resistor 1 (V1)', 'Resistor 2 (V2)'], 'Voltage across Resistor (V)');
+    }
+
+    // Function to update chart
+    function updateChart(data, labels, label) {
+      const ctx = document.getElementById('circuitChart').getContext('2d');
+      if (chart) {
+        chart.destroy();
+      }
+      chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: label,
+            data: data,
+            backgroundColor: ['#4caf50', '#2196f3'],
+            borderColor: ['#388e3c', '#1976d2'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: label
+              }
+            }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+

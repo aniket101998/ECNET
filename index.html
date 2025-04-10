@@ -1,0 +1,584 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>EC </title>
+<meta name="generator" content="WYSIWYG Web Builder 18 - http://www.wysiwygwebbuilder.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link href="css/E&C.css" rel="stylesheet">
+<link href="css/index.css" rel="stylesheet">
+<script src="jquery-1.12.4.min.js"></script>
+<script src="jquery.ui.effect.min.js"></script>
+<script src="wb.panel.min.js"></script>
+<script src="popper.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="searchindex.js"></script>
+<script src="wb.sitesearch.min.js"></script>
+<script>
+var features = '';
+function searchPage(features)
+{
+   var element = document.getElementById('SiteSearch1');
+   window.open('sitesearch1-results.html?q='+encodeURIComponent(element.value), '', features);
+   return false;
+}
+</script>
+<script src="wwb18.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(event)
+{
+   var Carousel1 = new bootstrap.Carousel('#Carousel1', {interval: 3000, pause: false});
+});
+</script>
+<script>
+$(document).ready(function()
+{
+   $('#reviewsImage1').addClass('visibility-hidden');
+   $('#portfolio-image2').addClass('visibility-hidden');
+   $('#reviewsImage1').addClass('visibility-hidden');
+   $('#portfolio-image2').addClass('visibility-hidden');
+   $("a[href*='#welcome']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_welcome').offset().top-88 }, 600, 'easeOutCirc');
+   });
+   $("a[href*='#services1']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_services1').offset().top-88 }, 600, 'easeOutCirc');
+   });
+   function onScrollservices1()
+   {
+      var $obj = $("#wb_services1");
+      if (!$obj.hasClass("in-viewport") && $obj.inViewPort(false))
+      {
+         $obj.addClass("in-viewport");
+         AnimateCss('reviewsImage1', 'animate-fade-in-up', 0, 1000);
+         AnimateCss('portfolio-image2', 'animate-fade-in-up', 500, 1000);
+      }
+   }
+   onScrollservices1();
+   $(window).scroll(function(event)
+   {
+      onScrollservices1();
+   });
+   $("a[href*='#blog']").click(function(event)
+   {
+      event.preventDefault();
+      $('html, body').stop().animate({ scrollTop: $('#wb_blog').offset().top-88 }, 600, 'easeOutCirc');
+   });
+   function onScrollblog()
+   {
+      var $obj = $("#wb_blog");
+      if (!$obj.hasClass("in-viewport") && $obj.inViewPort(false))
+      {
+         $obj.addClass("in-viewport");
+         AnimateCss('reviewsImage1', 'animate-fade-in-up', 0, 1000);
+         AnimateCss('portfolio-image2', 'animate-fade-in-up', 500, 1000);
+      }
+   }
+   onScrollblog();
+   $(window).scroll(function(event)
+   {
+      onScrollblog();
+   });
+   $("#PanelLayer").panel({animate: true, animationDuration: 500, animationEasing: 'easeOutCirc', dismissible: true, display: 'push', position: 'left'});
+   $('.OverlayMenu2 .item-has-children').children('a').on('click', function(event)
+   {
+      event.preventDefault();
+      $(this).toggleClass('submenu-open').next('.sub-menu').slideToggle(0,'linear').end().parent('.item-has-children').siblings('.item-has-children').children('a').removeClass('submenu-open').next('.sub-menu').slideUp(0,'linear');
+   });
+   searchParseURL('SiteSearch1');
+   searchAutoComplete('SiteSearch1', 0, '_parent');
+   $("#Layer2").panel({animate: true, animationDuration: 500, animationEasing: 'easeOutCirc', dismissible: true, display: 'push', position: 'left'});
+   $('.OverlayMenu1 .item-has-children').children('a').on('click', function(event)
+   {
+      event.preventDefault();
+      $(this).toggleClass('submenu-open').next('.sub-menu').slideToggle(0,'linear').end().parent('.item-has-children').siblings('.item-has-children').children('a').removeClass('submenu-open').next('.sub-menu').slideUp(0,'linear');
+   });
+   var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+   if (iOS)
+   {
+      $('#wb_welcome,#PanelLayer,#Layer2').css('background-attachment', 'scroll');
+   }
+   $(window).on('resize', function()
+   {
+      ResponsiveVideo('welcome-video');
+      ResponsiveVideo('PanelLayer-video');
+      ResponsiveVideo('Layer2-video');
+   });
+   ResponsiveVideo('welcome-video');
+   ResponsiveVideo('PanelLayer-video');
+   ResponsiveVideo('Layer2-video');
+});
+</script>
+</head>
+<body>
+<div id="wb_welcome">
+<div id="welcome-video"><video src="4709394-Uhd 4096 2160 25Fps.mp4" autoplay loop muted playsinline></video>
+</div>
+<div id="welcome-divider-bottom">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 24" preserveAspectRatio="none">
+<defs>
+   <path id="wave-animated" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+</defs>
+<g class="wave-animated">
+   <use xlink:href="#wave-animated" x="48" y="0" class="divider-fill" style="opacity:0.7" />
+   <use xlink:href="#wave-animated" x="48" y="3" class="divider-fill" style="opacity:0.5" />
+   <use xlink:href="#wave-animated" x="48" y="5" class="divider-fill" style="opacity:0.3" />
+   <use xlink:href="#wave-animated" x="48" y="7" class="divider-fill"  />
+</g>
+</svg>
+</div>
+<div id="welcome">
+<div class="col-1">
+<div id="wb_welcomeText">
+<p style="font-family:Arial;font-size:16px;line-height:18px;"><span style="font-family:Roboto;font-size:32px;line-height:38.5px;font-weight:bold;">EC SCHOLAR NET</span></p>
+</div>
+</div>
+</div>
+</div>
+<div id="wb_blog">
+<div id="blog-overlay"></div>
+<div id="blog">
+<div class="row">
+<div class="col-1">
+<div class="col-1-padding">
+<div id="wb_services1">
+<div id="services1">
+<div class="row">
+<div class="col-1">
+<div id="wb_Card69" class="card">
+   <div id="Card69-card-body">
+      <div id="Card69-card-item0"><a href="./Notes-&-Papers.html"><svg class="svg-icon" viewBox="0 0 116 116" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M110 31 C112 33, 113 36, 112 39 L94 98 C93 101, 91 103, 89 105 C86 107, 84 108, 81 108 L21 108 C18 108, 15 107, 12 104 C8 102, 6 99, 5 96 C4 93, 4 90, 5 87 C5 87, 5 87, 5 86 C5 85, 5 84, 5 83 C5 83, 5 83, 5 82 C5 81, 5 81, 5 81 C5 80, 5 80, 6 79 C6 79, 6 78, 7 78 C7 77, 7 77, 8 76 C9 75, 10 73, 11 70 C12 68, 12 66, 13 64 C13 64, 13 63, 13 63 C12 62, 12 61, 13 61 C13 60, 13 60, 14 59 C14 58, 15 58, 15 57 C16 56, 17 54, 17 51 C18 49, 19 47, 19 46 C19 45, 19 45, 19 44 C19 43, 19 42, 19 42 C19 41, 20 41, 20 40 C21 39, 22 39, 22 38 C23 37, 24 35, 25 33 C26 30, 26 28, 26 27 C26 26, 26 26, 26 25 C26 24, 26 24, 26 23 C26 23, 26 22, 27 22 C27 22, 27 21, 28 21 C28 20, 29 20, 29 19 C29 19, 30 18, 30 17 C30 16, 31 16, 31 15 C31 14, 32 13, 32 13 C32 12, 33 11, 33 11 C34 10, 34 10, 35 9 C36 9, 36 8, 37 8 C38 8, 39 8, 40 9 L40 9 C42 8, 43 8, 44 8 L93 8 C96 8, 98 9, 100 12 C102 14, 102 17, 101 20 L84 79 C82 84, 81 87, 79 89 C77 90, 75 91, 71 91 L14 91 C13 91, 12 91, 12 92 C11 93, 11 94, 12 95 C13 98, 16 99, 21 99 L81 99 C82 99, 83 99, 85 98 C86 98, 87 97, 87 96 L106 32 C107 31, 107 30, 107 28 C108 29, 110 30, 110 31 Z M42 31 C41 32, 41 32, 42 33 C42 33, 42 33, 43 33 L82 33 C83 33, 83 33, 84 33 C85 32, 85 32, 85 31 L86 27 C87 26, 87 26, 86 25 C86 25, 86 25, 85 25 L46 25 C45 25, 45 25, 44 25 C43 26, 43 26, 43 27 Z M36 48 C36 48, 36 49, 36 49 C37 49, 37 50, 38 50 L77 50 C78 50, 78 49, 79 49 C79 49, 79 48, 80 48 L81 43 C81 43, 81 42, 81 42 C81 42, 80 41, 80 41 L40 41 C40 41, 39 42, 39 42 C38 42, 38 43, 38 43"/>
+</svg>
+</a></div>
+      <div id="Card69-card-item1"><a href="./Notes-&-Papers.html">&nbsp;&nbsp;NOTES</a></div>
+      <div id="Card69-card-item2"><br>Access a vast collection of well-structured and concise notes tailored for electronics and communication subjects. Each topic is explained with clarity, ensuring students can quickly grasp complex concepts and prepare effectively for exams or practical applications, saving time and enhancing learning outcomes.<br><br><br><br></div>
+   </div>
+</div>
+<div id="wb_Card7" class="card">
+   <div id="Card7-card-body">
+      <div id="Card7-card-item0"><a href="./Links.html"><svg class="svg-icon" viewBox="0 0 116 116" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M91 69 L91 90 C91 95, 90 99, 86 103 C82 107, 78 108, 73 108 L19 108 C14 108, 9 107, 6 103 C2 99, 0 95, 0 90 L0 36 C0 31, 2 26, 6 23 C9 19, 14 17, 19 17 L65 17 C65 17, 66 17, 66 18 C66 18, 67 19, 67 19 L67 23 C67 24, 66 25, 66 25 C66 25, 65 26, 65 26 L19 26 C16 26, 14 27, 12 29 C10 31, 9 33, 9 36 L9 90 C9 93, 10 95, 12 97 C14 99, 16 100, 19 100 L73 100 C76 100, 78 99, 80 97 C82 95, 83 93, 83 90 L83 69 C83 68, 83 68, 84 68 C84 67, 85 67, 85 67 L89 67 C90 67, 90 67, 91 68 C91 68, 91 68, 91 69 Z M116 13 L116 46 C116 47, 116 48, 115 49 C114 50, 113 50, 112 50 C111 50, 110 50, 109 49 L98 38 L56 80 C55 80, 55 81, 54 81 C54 81, 53 80, 53 80 L45 73 C45 72, 45 72, 45 71 C45 71, 45 70, 45 70 L88 27 L76 16 C75 15, 75 14, 75 13 C75 12, 75 11, 76 10 C77 9, 78 9, 79 9 L112 9 C113 9, 114 9, 115 10 C116 11, 116 12, 116 13"/>
+</svg>
+</a></div>
+      <div id="Card7-card-item1"><a href="./Links.html">&nbsp;&nbsp;LINKS</a></div>
+      <div id="Card7-card-item2"><br>RTMNU offers valuable resources like study materials and exam papers for electronics and communication students. EasyEDA is an online tool for PCB design and simulation, simplifying schematic and layout creation. MATLAB is essential for data analysis, simulation, and modeling in engineering, widely used in signal processing and systems analysis.<br><br><br></div>
+   </div>
+</div>
+</div>
+<div class="col-2">
+<div id="wb_Card5" class="card">
+   <div id="Card5-card-body">
+      <div id="Card5-card-item0"><a href="./Information.html"><svg class="svg-icon" viewBox="0 0 116 116" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M21 87 L21 95 L13 95 C13 95, 12 95, 12 94 L12 93 L9 93 C9 93, 8 93, 8 92 L8 90 C8 89, 9 89, 9 89 L12 89 L12 88 C12 87, 13 87, 13 87 Z M21 70 L21 79 L13 79 C13 79, 12 78, 12 78 L12 76 L9 76 C9 76, 8 76, 8 75 L8 73 C8 73, 9 72, 9 72 L12 72 L12 71 C12 71, 13 70, 13 70 Z M21 54 L21 62 L13 62 C13 62, 12 62, 12 61 L12 60 L9 60 C9 60, 8 60, 8 59 L8 57 C8 56, 9 56, 9 56 L12 56 L12 55 C12 54, 13 54, 13 54 Z M21 37 L21 45 L13 45 C13 45, 12 45, 12 44 L12 43 L9 43 C9 43, 8 43, 8 42 L8 40 C8 40, 9 39, 9 39 L12 39 L12 38 C12 37, 13 37, 13 37 Z M21 21 L21 29 L13 29 C13 29, 12 28, 12 28 L12 27 L9 27 C9 27, 8 26, 8 26 L8 24 C8 23, 9 23, 9 23 L12 23 L12 22 C12 21, 13 21, 13 21 Z M91 10 L91 105 C91 107, 91 109, 89 110 C88 111, 87 112, 85 112 L31 112 C29 112, 28 111, 27 110 C25 109, 25 107, 25 105 L25 10 C25 8, 25 7, 27 6 C28 5, 29 4, 31 4 L85 4 C87 4, 88 5, 89 6 C91 7, 91 8, 91 10 Z M108 90 L108 92 C108 93, 107 93, 107 93 L104 93 L104 94 C104 95, 103 95, 103 95 L95 95 L95 87 L103 87 C103 87, 104 87, 104 88 L104 89 L107 89 C107 89, 108 89, 108 90 Z M108 73 L108 75 C108 76, 107 76, 107 76 L104 76 L104 78 C104 78, 103 79, 103 79 L95 79 L95 70 L103 70 C103 70, 104 71, 104 71 L104 72 L107 72 C107 72, 108 73, 108 73 Z M108 57 L108 59 C108 60, 107 60, 107 60 L104 60 L104 61 C104 62, 103 62, 103 62 L95 62 L95 54 L103 54 C103 54, 104 54, 104 55 L104 56 L107 56 C107 56, 108 56, 108 57 Z M108 40 L108 42 C108 43, 107 43, 107 43 L104 43 L104 44 C104 45, 103 45, 103 45 L95 45 L95 37 L103 37 C103 37, 104 37, 104 38 L104 39 L107 39 C107 39, 108 40, 108 40 Z M108 24 L108 26 C108 26, 107 27, 107 27 L104 27 L104 28 C104 28, 103 29, 103 29 L95 29 L95 21 L103 21 C103 21, 104 21, 104 22 L104 23 L107 23 C107 23, 108 23, 108 24"/>
+</svg>
+</a></div>
+      <div id="Card5-card-item1"><a href="./Information.html">&nbsp;&nbsp;INFORMATION</a></div>
+      <div id="Card5-card-item2"><br>Dive into a detailed repository of electronic components, covering specifications, working principles, and real-world applications. This section is a perfect resource for students aiming to enhance their technical understanding, offering clarity on how each component contributes to designing and building electronic systems.<br><br><br></div>
+   </div>
+</div>
+<div id="wb_Card8" class="card">
+   <div id="Card8-card-body">
+      <div id="Card8-card-item0"><a href="./Shop.html"><svg class="svg-icon" viewBox="0 0 116 116" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M86 44 C87 44, 87 43, 87 42 C87 40, 87 39, 86 39 C85 38, 84 37, 83 37 C82 37, 81 38, 80 39 L71 48 L71 29 C71 28, 70 27, 69 26 C69 25, 68 25, 66 25 C65 25, 64 25, 64 26 C63 27, 62 28, 62 29 L62 48 L53 39 C52 38, 51 37, 50 37 C49 37, 48 38, 47 39 C46 39, 46 40, 46 42 C46 43, 46 44, 47 44 L64 61 C64 62, 65 62, 66 62 C68 62, 69 62, 69 61 Z M43 90 C45 91, 46 93, 46 95 C46 98, 45 100, 43 101 C42 103, 40 104, 37 104 C35 104, 33 103, 32 101 C30 100, 29 98, 29 95 C29 93, 30 91, 32 90 C33 88, 35 87, 37 87 C40 87, 42 88, 43 90 Z M101 90 C103 91, 104 93, 104 95 C104 98, 103 100, 101 101 C100 103, 98 104, 95 104 C93 104, 91 103, 90 101 C88 100, 87 98, 87 95 C87 93, 88 91, 90 90 C91 88, 93 87, 95 87 C98 87, 100 88, 101 90 Z M112 25 L112 58 C112 59, 112 60, 111 61 C110 62, 109 62, 108 62 L41 70 C41 70, 41 71, 41 72 C41 72, 41 73, 41 73 C42 74, 42 74, 42 75 C42 75, 41 77, 40 79 L100 79 C101 79, 102 79, 103 80 C103 81, 104 82, 104 83 C104 84, 103 85, 103 86 C102 87, 101 87, 100 87 L33 87 C32 87, 31 87, 30 86 C30 85, 29 84, 29 83 C29 82, 29 82, 30 80 C30 79, 31 78, 32 77 C33 75, 33 74, 33 74 L22 21 L8 21 C7 21, 6 20, 6 20 C5 19, 4 18, 4 17 C4 16, 5 15, 6 14 C6 13, 7 13, 8 13 L25 13 C26 13, 26 13, 27 13 C27 13, 28 14, 28 14 C28 14, 29 15, 29 16 C29 16, 29 17, 29 17 C30 18, 30 18, 30 19 C30 20, 30 21, 30 21 L108 21 C109 21, 110 21, 111 22 C112 23, 112 24, 112 25"/>
+</svg>
+</a></div>
+      <div id="Card8-card-item1"><a href="./Shop.html">&nbsp;&nbsp;SHOP</a></div>
+      <div id="Card8-card-item2"><br>With a user-friendly interface and a wide range of products, it ensures students have access to essential parts for their academic and personal projects, all in one place. Shop for premium-quality electronic components with ease through this dedicated section.<br><br><br></div>
+   </div>
+</div>
+</div>
+<div class="col-3">
+<div id="wb_Card6" class="card">
+   <div id="Card6-card-body">
+      <div id="Card6-card-item0"><a href="./ChatRoom.html"><svg class="svg-icon" viewBox="0 0 116 116" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M28 34 C29 33, 30 32, 30 30 C30 28, 29 27, 28 26 C27 24, 26 24, 24 24 C22 24, 20 24, 19 26 C18 27, 17 28, 17 30 C17 32, 18 33, 19 34 C20 35, 22 36, 24 36 C26 36, 27 35, 28 34 Z M78 63 C78 61, 77 60, 76 59 C75 58, 74 58, 72 58 C71 58, 70 58, 69 59 C68 60, 67 61, 67 63 C67 64, 68 65, 69 66 C70 67, 71 67, 72 67 C74 67, 75 67, 76 66 C77 65, 78 64, 78 63 Z M61 34 C62 33, 63 32, 63 30 C63 28, 62 27, 61 26 C60 24, 59 24, 57 24 C55 24, 53 24, 52 26 C51 27, 50 28, 50 30 C50 32, 51 33, 52 34 C53 35, 55 36, 57 36 C59 36, 60 35, 61 34 Z M104 63 C104 61, 103 60, 102 59 C101 58, 100 58, 98 58 C97 58, 96 58, 95 59 C94 60, 93 61, 93 63 C93 64, 94 65, 95 66 C96 67, 97 67, 98 67 C100 67, 101 67, 102 66 C103 65, 104 64, 104 63 Z M87 37 C85 37, 84 37, 82 37 C75 37, 68 38, 62 42 C56 45, 51 49, 47 55 C44 61, 42 67, 42 74 C42 77, 43 80, 44 84 C42 84, 41 84, 39 84 C38 84, 37 84, 36 84 C35 84, 34 84, 32 83 C31 83, 30 83, 30 83 C29 83, 28 83, 26 82 C24 82, 23 82, 23 81 L6 90 L11 76 C-1 67, -8 56, -8 44 C-8 37, -6 30, -1 24 C3 18, 9 13, 16 9 C23 6, 31 4, 39 4 C47 4, 54 5, 61 8 C68 11, 73 15, 78 20 C82 25, 85 31, 87 37 Z M125 73 C125 78, 123 83, 120 88 C117 92, 113 96, 108 100 L112 112 L99 105 C93 107, 88 107, 85 107 C78 107, 71 106, 65 103 C59 100, 54 96, 50 90 C47 85, 45 79, 45 73 C45 67, 47 61, 50 56 C54 51, 59 47, 65 44 C71 41, 78 39, 85 39 C92 39, 98 41, 105 44 C111 47, 116 51, 119 56 C123 61, 125 67, 125 73"/>
+</svg>
+</a></div>
+      <div id="Card6-card-item1"><a href="./ChatRoom.html">&nbsp;&nbsp;CHAT-ROOM</a></div>
+      <div id="Card6-card-item2"><br>Collaborate with peers in an interactive student chat room to exchange ideas, solve doubts, and discuss concepts. This feature promotes teamwork and knowledge sharing, helping students connect with like-minded individuals and create a supportive academic community.<br><br><br><br><br></div>
+   </div>
+</div>
+<div id="wb_Card9" class="card">
+   <div id="Card9-card-body">
+      <div id="Card9-card-item0"><a href="./projects.html"><svg class="svg-icon" viewBox="0 0 116 116" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M99 54 L100 75 C100 78, 99 80, 95 83 C91 85, 86 87, 80 89 C73 90, 66 91, 59 91 C51 91, 44 90, 38 89 C32 87, 26 85, 23 83 C19 80, 17 78, 17 75 L19 54 L56 66 C57 66, 58 66, 59 66 C60 66, 61 66, 62 66 Z M132 31 C133 31, 133 32, 133 33 C133 34, 133 35, 132 35 L60 58 C59 58, 59 58, 59 58 C59 58, 58 58, 58 58 L16 45 C14 46, 13 48, 11 52 C10 55, 9 59, 9 63 C12 65, 13 67, 13 70 C13 73, 12 76, 10 77 L13 105 C13 106, 13 107, 13 107 C12 107, 12 108, 11 108 L-1 108 C-2 108, -2 107, -3 107 C-3 107, -3 106, -3 105 L0 77 C-2 76, -3 73, -3 70 C-3 67, -2 65, 1 63 C1 54, 4 47, 7 42 L-14 35 C-15 35, -16 34, -16 33 C-16 32, -15 31, -14 31 L58 8 C58 8, 59 8, 59 8 C59 8, 59 8, 60 8"/>
+</svg>
+</a></div>
+      <div id="Card9-card-item1"><a href="./projects.html" title="  PROJECTS">&nbsp;&nbsp;PROJECTS</a></div>
+      <div id="Card9-card-item2"><br>Discover creative and practical project ideas to develop technical skills and innovation. This section provides detailed insights, step-by-step implementation guidance, and valuable resources, enabling students to execute their projects successfully and stay ahead in the competitive world of electronics and communication.<br><br></div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="wb_Text2">
+<span style="color:#000000;font-family:Arial;font-size:16px;"><br><br><br></span>
+</div>
+<div id="wb_LayoutGrid1">
+<div id="LayoutGrid1">
+<div class="row">
+<div class="col-1">
+<div class="col-1-padding">
+<div id="wb_Card1" class="card">
+   <div id="Card1-card-body">
+      <div id="Card1-card-item0"><a href="./Simulations.html" title="  TRY OUR SIMULATIONS...!"><svg class="svg-icon" viewBox="0 0 108 108" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M32 54 L32 85 L16 85 L16 54Z  M55 23 L55 85 L39 85 L39 23Z  M116 93 L116 100 L-7 100 L-7 8 L1 8 L1 93Z  M78 39 L78 85 L62 85 L62 39Z  M101 15 L101 85 L86 85 L86 15Z "/>
+</svg>
+&nbsp;&nbsp;TRY OUR SIMULATIONS...!</a></div>
+      <div id="Card1-card-item1"><br>We developed interactive simulations to illustrate fundamental electronic concepts, providing a hands-on learning experience. These simulations bridge theory with practical application, helping students visualize, analyze, and understand complex principles, fostering deeper engagement and better comprehension of electronics and communication engineering.<br><br></div>
+   </div>
+</div>
+<div id="wb_ThemeableButton1">
+<a class="ui-button ui-corner-all" id="ThemeableButton1" href="./Simulations.html"><span class="ui-button-icon ui-icon ui-primary"></span><span class="ui-button-icon-space"> </span>More Info</a>
+</div>
+</div>
+</div>
+<div class="col-2">
+<div class="col-2-padding">
+<div id="wb_Image2">
+<img src="images/alchemy_refiner_alchemy_magic_0_906ae377-14de-40a0-8039-1f4706bb1af1_0-removebg-preview.png" id="Image2" alt="" title="600x400" width="440" height="440">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="wb_Text9">
+&nbsp;
+</div>
+<div id="wb_Text10">
+<span style="color:#000000;font-family:Arial;font-size:16px;"><br><br><br></span>
+</div>
+<div id="wb_carouselGrid">
+<div id="carouselGrid">
+<div class="row">
+<div class="col-1">
+<div id="wb_Carousel1">
+<div id="Carousel1" class="carousel slide" data-bs-ride="carousel">
+<ol class="carousel-indicators">
+<li data-bs-target="#Carousel1" data-bs-slide-to="0" class="active"></li>
+<li data-bs-target="#Carousel1" data-bs-slide-to="1"></li>
+<li data-bs-target="#Carousel1" data-bs-slide-to="2"></li>
+</ol>
+<div class="carousel-inner">
+<div class="carousel-item frame-1 active">
+<div class="carousel-item-inner">
+</div>
+</div>
+<div class="carousel-item frame-2">
+<div class="carousel-item-inner">
+</div>
+</div>
+<div class="carousel-item frame-3">
+<div class="carousel-item-inner">
+<div id="wb_Text6" class="caption">
+&nbsp;
+</div>
+</div>
+</div>
+</div>
+<a class="carousel-item-start carousel-control" href="#Carousel1" role="button" data-bs-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span>
+</a>
+<a class="carousel-item-end carousel-control" href="#Carousel1" role="button" data-bs-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span>
+</a>
+</div>
+</div>
+
+<div id="wb_Text5" class="caption">
+<span style="color:#000000;font-family:Arial;font-size:17px;line-height:12px;">Flat 20% OFF</span>
+</div>
+<div id="wb_Text7" class="caption">
+<span style="color:#000000;font-family:Arial;font-size:27px;line-height:19px;"><strong>Visit Our Store Now..!!</strong></span>
+</div>
+</div>
+<div class="col-2">
+<div id="wb_Card2" class="card">
+   <div id="Card2-card-body">
+      <div id="Card2-card-item0"><a href="https://ecnetstore.rf.gd/" title="  EC NET STORE"><svg class="svg-icon" viewBox="0 0 108 108" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M40 84 C42 86, 43 87, 43 90 C43 92, 42 93, 40 95 C39 96, 37 97, 35 97 C33 97, 31 96, 29 95 C28 93, 27 92, 27 90 C27 87, 28 86, 29 84 C31 83, 33 82, 35 82 C37 82, 39 83, 40 84 Z M94 84 C96 86, 97 87, 97 90 C97 92, 96 93, 94 95 C93 96, 91 97, 89 97 C87 97, 85 96, 83 95 C82 93, 81 92, 81 90 C81 87, 82 86, 83 84 C85 83, 87 82, 89 82 C91 82, 93 83, 94 84 Z M104 24 L104 55 C104 56, 104 57, 103 57 C103 58, 102 59, 101 59 L38 66 C38 68, 39 70, 39 70 C39 71, 38 72, 37 74 L93 74 C94 74, 95 75, 95 75 C96 76, 97 77, 97 78 C97 79, 96 80, 95 81 C95 81, 94 82, 93 82 L31 82 C30 82, 29 81, 28 81 C28 80, 27 79, 27 78 C27 78, 27 77, 28 76 C28 75, 28 75, 29 74 C29 73, 29 72, 30 71 C30 71, 31 70, 31 70 L20 20 L8 20 C7 20, 6 20, 5 19 C4 18, 4 17, 4 16 C4 15, 4 14, 5 14 C6 13, 7 12, 8 12 L23 12 C24 12, 24 13, 25 13 C25 13, 26 13, 26 14 C26 14, 27 15, 27 15 C27 16, 27 16, 27 17 C28 17, 28 18, 28 19 C28 19, 28 20, 28 20 L100 20 C101 20, 102 21, 103 21 C104 22, 104 23, 104 24"/>
+</svg>
+&nbsp;&nbsp;EC NET STORE</a></div>
+      <div id="Card2-card-item1"><br>Our website offers a dedicated shop section where students and electronics enthusiasts can conveniently purchase a variety of electronic components. From essential items like resistors, capacitors, and transistors to specialized ICs and sensors, we provide a wide selection to support all levels of projects. Each component is carefully sourced to ensure quality and reliability, catering to both academic and hobbyist needs. With easy navigation and detailed product descriptions, our shop section aims to make the process of finding and purchasing components simple and efficient.<br><br><br></div>
+   </div>
+</div>
+<div id="wb_ThemeableButton3">
+<a class="ui-button ui-corner-all" id="ThemeableButton3" href="https://ecnetstore.rf.gd/"><span class="ui-button-icon ui-icon ui-primary"></span><span class="ui-button-icon-space"> </span>Visit Now</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid2">
+<div id="LayoutGrid2">
+<div class="row">
+<div class="col-1">
+<div class="col-1-padding">
+<div id="wb_Image1">
+<img src="images/Untitled__2_-removebg-preview.png" id="Image1" alt="" title="600x400" width="456" height="260">
+</div>
+</div>
+</div>
+<div class="col-2">
+<div class="col-2-padding">
+<div id="wb_Card3" class="card">
+   <div id="Card3-card-body">
+      <div id="Card3-card-item0"><a href="./ChatBot.html" title="  EC Buddy  Unlimted Image Generator"><svg class="svg-icon" viewBox="0 0 108 108" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M75 40 L92 22 L86 16 L68 34Z  M101 20 C101 20, 102 21, 102 22 C102 23, 101 24, 101 25 L23 103 C22 103, 21 104, 20 104 C19 104, 18 103, 18 103 L6 91 C5 90, 5 89, 5 88 C5 87, 5 86, 6 85 L83 8 C84 7, 85 7, 86 7 C87 7, 88 7, 89 8 Z M20 11 L26 13 L20 14 L18 20 L17 14 L11 13 L17 11 L18 5Z  M41 21 L53 24 L41 28 L38 40 L34 28 L22 24 L34 21 L38 9Z  M97 49 L103 51 L97 53 L96 59 L94 53 L88 51 L94 49 L96 44Z  M59 11 L65 13 L59 14 L57 20 L55 14 L49 13 L55 11 L57 5Z "/>
+</svg>
+&nbsp;&nbsp;EC Buddy Unlimited Image Generator</a></div>
+      <div id="Card3-card-item1"><br>EC Buddy Unlimited is an advanced AI-powered image generator that creates stunning visuals from text prompts. With unlimited creative possibilities, users can generate high-quality images quickly and easily. Ideal for designers, artists, and content creators, EC Buddy provides a seamless, efficient way to bring your ideas to life.<br><br></div>
+   </div>
+</div>
+<div id="wb_ThemeableButton2">
+<a class="ui-button ui-corner-all" id="ThemeableButton2" href="./ChatBot.html"><span class="ui-button-icon ui-icon ui-primary"></span><span class="ui-button-icon-space"> </span>    Generate Now</a>
+</div>
+<div id="Html1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EC Buddy - AI Chatbot</title>
+    </head>
+<body>
+    <div class="chat-toggle-button" onclick="toggleChat()">Chat With EC Buddy 👋 </div>
+
+    <div class="chat-popup" id="chat-popup">
+        <div class="chat-container">
+            <button class="close-button" onclick="toggleChat()">×</button>
+            <div class="chat-header">
+                <a href="https://github.com/aniket101998" target="_blank">EC Buddy</a>
+            </div>
+            <div class="chat-box" id="chat-box"></div>
+            <div class="input-box">
+                <input type="text" id="user-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+            <div class="chat-footer">
+                Developed by <a href="https://github.com/aniket101998" target="_blank">Aniket Shegamwar</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const chatPopup = document.getElementById("chat-popup");
+            chatPopup.style.display = chatPopup.style.display === "block" ? "none" : "block";
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const inputField = document.getElementById("user-input");
+            const message = inputField.value.trim();
+            if (!message) return;
+            
+            appendMessage("You", message, "user-message");
+            inputField.value = "";
+
+            const chatBox = document.getElementById("chat-box");
+            const typingIndicator = document.createElement("div");
+            typingIndicator.classList.add("message", "typing-animation");
+            typingIndicator.innerText = "EC Buddy is thinking... 🤔";
+            chatBox.appendChild(typingIndicator);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            
+            try {
+                const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(message)}`);
+                const botReply = await response.text();
+                chatBox.removeChild(typingIndicator);
+                appendMessage("EC Buddy", formatResponse(botReply), "bot-message");
+            } catch (error) {
+                chatBox.removeChild(typingIndicator);
+                appendMessage("EC Buddy", "Oops! My brain glitched. Try again! 🤖", "bot-message");
+            }
+        }
+
+        function appendMessage(sender, text, className) {
+            const chatBox = document.getElementById("chat-box");
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("message", className);
+            messageElement.innerHTML = `<strong>${sender}:</strong><br>${text}`;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function formatResponse(response) {
+            return response.replace(/\n/g, "<br>").replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+        }
+    </script>
+</body>
+</html>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="menuLayer">
+</div>
+<div id="PanelLayer">
+<div id="PanelLayer-video"><video src="230384 Small.mp4" autoplay loop muted playsinline></video>
+</div>
+<div id="wb_IconFont2">
+<a href="#" onclick="HidePanel('PanelLayer', event);return false;"><div id="IconFont2"><i class="fa fa-times"></i></div></a>
+</div>
+<div id="wb_Heading3">
+<h2 id="Heading3">EC</h2>
+</div>
+<div id="wb_OverlayMenu2">
+<div class="OverlayMenu2">
+<ul class="OverlayMenu2" role="menu">
+<li><a role="menuitem" href="./index.html" class="OverlayMenu2-effect">HOME</a></li>
+<li class="item-has-children">
+<a role="menuitem" href="#" class="OverlayMenu2-effect">MENU</a>
+<ul class="sub-menu" role="menu">
+<li><a role="menuitem" href="./Notes-&-Papers.html" class="OverlayMenu2-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M61 17 C62 18, 62 20, 62 22 L52 54 C52 56, 51 57, 49 58 C48 59, 46 59, 45 59 L12 59 C10 59, 8 59, 7 58 C5 56, 4 55, 3 53 C3 51, 2 50, 3 48 C3 48, 3 48, 3 47 C3 47, 3 46, 3 46 C3 46, 3 46, 3 45 C3 45, 3 45, 3 45 C3 44, 3 44, 3 44 C3 44, 4 43, 4 43 C4 43, 4 42, 5 42 C5 41, 6 40, 6 39 C7 38, 7 36, 7 36 C7 35, 7 35, 7 34 C7 34, 7 34, 7 33 C7 33, 7 33, 8 32 C8 32, 8 32, 8 32 C9 31, 9 30, 10 28 C10 27, 11 26, 11 25 C11 25, 11 25, 11 24 C11 23, 11 23, 11 23 C11 23, 11 22, 12 22 C12 22, 12 21, 12 21 C13 21, 13 20, 14 18 C14 17, 15 16, 15 15 C15 14, 15 14, 15 14 C15 13, 15 13, 15 13 C15 13, 15 12, 15 12 C15 12, 15 12, 16 11 C16 11, 16 11, 16 11 C16 10, 17 10, 17 10 C17 9, 17 9, 17 8 C17 8, 18 7, 18 7 C18 7, 18 6, 19 6 C19 6, 19 5, 20 5 C20 5, 20 5, 21 5 C21 5, 22 5, 23 5 L22 5 C23 5, 24 5, 24 5 L51 5 C53 5, 55 5, 56 7 C57 8, 57 9, 56 11 L46 44 C46 46, 45 48, 44 49 C43 50, 41 50, 39 50 L8 50 C8 50, 7 50, 7 51 C7 51, 7 52, 7 52 C7 54, 9 55, 12 55 L45 55 C46 55, 46 55, 47 54 C48 54, 48 53, 48 53 L59 18 C59 17, 59 16, 59 16 C60 16, 61 16, 61 17 Z M23 17 C23 17, 23 18, 23 18 C23 18, 24 18, 24 18 L46 18 C46 18, 46 18, 47 18 C47 18, 47 17, 47 17 L48 15 C48 15, 48 14, 48 14 C48 14, 47 14, 47 14 L25 14 C25 14, 25 14, 25 14 C24 14, 24 15, 24 15 Z M20 26 C20 27, 20 27, 20 27 C20 27, 21 27, 21 27 L43 27 C43 27, 43 27, 44 27 C44 27, 44 27, 44 26 L45 24 C45 24, 45 23, 45 23 C45 23, 45 23, 44 23 L22 23 C22 23, 22 23, 22 23 C21 23, 21 24, 21 24"/>
+</svg>
+NOTES&nbsp;&amp;&nbsp;PAPERS</a></li>
+<li><a role="menuitem" href="./ChatRoom.html" class="OverlayMenu2-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M15 19 C16 18, 16 17, 16 16 C16 15, 16 15, 15 14 C15 13, 14 13, 13 13 C12 13, 11 14, 10 14 C10 15, 9 15, 9 16 C9 17, 10 18, 10 19 C11 19, 12 20, 13 20 C14 20, 15 19, 15 19 Z M43 35 C43 34, 43 33, 42 33 C41 32, 41 32, 40 32 C39 32, 38 32, 38 33 C37 33, 37 34, 37 35 C37 35, 37 36, 38 36 C38 37, 39 37, 40 37 C41 37, 41 37, 42 36 C43 36, 43 35, 43 35 Z M34 19 C34 18, 34 17, 34 16 C34 15, 34 15, 34 14 C33 13, 32 13, 31 13 C30 13, 29 14, 29 14 C28 15, 27 15, 27 16 C27 17, 28 18, 29 19 C29 19, 30 20, 31 20 C32 20, 33 19, 34 19 Z M57 35 C57 34, 57 33, 56 33 C56 32, 55 32, 54 32 C53 32, 53 32, 52 33 C52 33, 51 34, 51 35 C51 35, 52 36, 52 36 C53 37, 53 37, 54 37 C55 37, 56 37, 56 36 C57 36, 57 35, 57 35 Z M48 20 C47 20, 46 20, 45 20 C41 20, 37 21, 34 23 C31 25, 28 27, 26 30 C24 34, 23 37, 23 41 C23 43, 23 44, 24 46 C23 46, 22 46, 22 46 C21 46, 20 46, 20 46 C19 46, 19 46, 18 46 C17 46, 17 46, 16 46 C16 46, 15 46, 14 45 C13 45, 13 45, 12 45 L3 49 L6 42 C-1 37, -4 31, -4 24 C-4 20, -3 16, -1 13 C1 10, 5 7, 9 5 C13 3, 17 2, 22 2 C26 2, 30 3, 33 5 C37 6, 40 8, 43 11 C45 14, 47 17, 48 20 Z M69 40 C69 43, 68 46, 66 48 C65 51, 63 53, 60 55 L62 62 L55 58 C51 59, 48 59, 47 59 C43 59, 39 58, 36 57 C32 55, 30 53, 28 50 C26 47, 25 44, 25 40 C25 37, 26 34, 28 31 C30 28, 32 26, 36 24 C39 22, 43 22, 47 22 C51 22, 54 22, 58 24 C61 26, 64 28, 66 31 C68 34, 69 37, 69 40"/>
+</svg>
+CHATROOM</a></li>
+<li><a role="menuitem" href="./Shop.html" class="OverlayMenu2-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M24 50 C25 51, 26 52, 26 53 C26 54, 25 55, 24 56 C23 57, 22 57, 21 57 C20 57, 19 57, 18 56 C17 55, 16 54, 16 53 C16 52, 17 51, 18 50 C19 49, 20 48, 21 48 C22 48, 23 49, 24 50 Z M56 50 C57 51, 58 52, 58 53 C58 54, 57 55, 56 56 C55 57, 54 57, 53 57 C52 57, 51 57, 50 56 C49 55, 48 54, 48 53 C48 52, 49 51, 50 50 C51 49, 52 48, 53 48 C54 48, 55 49, 56 50 Z M62 14 L62 32 C62 33, 62 33, 61 34 C61 34, 61 34, 60 35 L23 39 C23 40, 23 41, 23 41 C23 42, 23 43, 22 44 L55 44 C56 44, 56 44, 57 44 C57 45, 58 45, 58 46 C58 47, 57 47, 57 48 C56 48, 56 48, 55 48 L19 48 C18 48, 18 48, 17 48 C17 47, 16 47, 16 46 C16 46, 16 45, 17 45 C17 44, 17 44, 17 44 C17 43, 18 43, 18 42 C18 42, 19 41, 19 41 L12 12 L5 12 C4 12, 4 11, 3 11 C3 11, 3 10, 3 9 C3 9, 3 8, 3 8 C4 7, 4 7, 5 7 L14 7 C14 7, 15 7, 15 7 C15 8, 16 8, 16 8 C16 8, 16 8, 16 9 C16 9, 17 9, 17 10 C17 10, 17 10, 17 11 C17 11, 17 12, 17 12 L60 12 C60 12, 61 12, 61 12 C62 13, 62 13, 62 14"/>
+</svg>
+SHOP</a></li>
+<li><a role="menuitem" href="./Links.html" class="OverlayMenu2-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M50 38 L50 50 C50 52, 49 55, 47 57 C45 59, 42 60, 40 60 L10 60 C7 60, 5 59, 3 57 C1 55, 0 52, 0 50 L0 20 C0 17, 1 15, 3 13 C5 11, 7 10, 10 10 L35 10 C35 10, 36 10, 36 10 C36 10, 36 10, 36 11 L36 13 C36 13, 36 14, 36 14 C36 14, 35 14, 35 14 L10 14 C8 14, 7 15, 6 16 C5 17, 4 18, 4 20 L4 50 C4 51, 5 52, 6 54 C7 55, 8 55, 10 55 L40 55 C41 55, 43 55, 44 54 C45 52, 45 51, 45 50 L45 38 C45 38, 45 38, 46 37 C46 37, 46 37, 47 37 L49 37 C49 37, 49 37, 50 37 C50 38, 50 38, 50 38 Z M64 7 L64 26 C64 26, 63 27, 63 27 C63 28, 62 28, 61 28 C61 28, 60 28, 60 27 L53 21 L30 44 C30 44, 30 45, 29 45 C29 45, 29 44, 29 44 L24 40 C24 40, 24 40, 24 39 C24 39, 24 39, 24 38 L48 15 L41 9 C41 8, 41 8, 41 7 C41 7, 41 6, 41 6 C42 5, 42 5, 43 5 L61 5 C62 5, 63 5, 63 6 C63 6, 64 7, 64 7"/>
+</svg>
+IMPORTANT&nbsp;LINKS</a></li>
+<li><a role="menuitem" href="./Information.html" class="OverlayMenu2-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M12 49 L12 53 L8 53 C7 53, 7 53, 7 53 L7 52 L5 52 C5 52, 5 52, 5 52 L5 50 C5 50, 5 50, 5 50 L7 50 L7 49 C7 49, 7 49, 8 49 Z M12 40 L12 44 L8 44 C7 44, 7 44, 7 44 L7 43 L5 43 C5 43, 5 43, 5 42 L5 41 C5 41, 5 41, 5 41 L7 41 L7 40 C7 40, 7 40, 8 40 Z M12 30 L12 35 L8 35 C7 35, 7 35, 7 34 L7 34 L5 34 C5 34, 5 34, 5 33 L5 32 C5 32, 5 32, 5 32 L7 32 L7 31 C7 31, 7 30, 8 30 Z M12 21 L12 26 L8 26 C7 26, 7 26, 7 25 L7 25 L5 25 C5 25, 5 25, 5 24 L5 23 C5 23, 5 22, 5 22 L7 22 L7 22 C7 21, 7 21, 8 21 Z M12 12 L12 17 L8 17 C7 17, 7 17, 7 16 L7 16 L5 16 C5 16, 5 15, 5 15 L5 14 C5 13, 5 13, 5 13 L7 13 L7 13 C7 12, 7 12, 8 12 Z M50 6 L50 59 C50 60, 50 61, 49 61 C49 62, 48 62, 47 62 L17 62 C16 62, 15 62, 15 61 C14 61, 14 60, 14 59 L14 6 C14 5, 14 5, 15 4 C15 3, 16 3, 17 3 L47 3 C48 3, 49 3, 49 4 C50 5, 50 5, 50 6 Z M60 50 L60 52 C60 52, 59 52, 59 52 L57 52 L57 53 C57 53, 57 53, 57 53 L53 53 L53 49 L57 49 C57 49, 57 49, 57 49 L57 50 L59 50 C59 50, 60 50, 60 50 Z M60 41 L60 42 C60 43, 59 43, 59 43 L57 43 L57 44 C57 44, 57 44, 57 44 L53 44 L53 40 L57 40 C57 40, 57 40, 57 40 L57 41 L59 41 C59 41, 60 41, 60 41 Z M60 32 L60 33 C60 34, 59 34, 59 34 L57 34 L57 34 C57 35, 57 35, 57 35 L53 35 L53 30 L57 30 C57 30, 57 31, 57 31 L57 32 L59 32 C59 32, 60 32, 60 32 Z M60 23 L60 24 C60 25, 59 25, 59 25 L57 25 L57 25 C57 26, 57 26, 57 26 L53 26 L53 21 L57 21 C57 21, 57 21, 57 22 L57 22 L59 22 C59 22, 60 23, 60 23 Z M60 14 L60 15 C60 15, 59 16, 59 16 L57 16 L57 16 C57 17, 57 17, 57 17 L53 17 L53 12 L57 12 C57 12, 57 12, 57 13 L57 13 L59 13 C59 13, 60 13, 60 14"/>
+</svg>
+INFORMATION</a></li>
+<li><a role="menuitem" href="./news.html" class="OverlayMenu2-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M32 20 L19 20 L19 34 L32 34Z  M37 43 L37 48 L14 48 L14 43Z  M37 16 L37 39 L14 39 L14 16Z  M60 43 L60 48 L41 48 L41 43Z  M60 34 L60 39 L41 39 L41 34Z  M60 25 L60 29 L41 29 L41 25Z  M60 16 L60 20 L41 20 L41 16Z  M5 50 L5 16 L0 16 L0 50 C0 51, 0 51, 1 52 C1 52, 2 52, 3 52 C3 52, 4 52, 4 52 C5 51, 5 51, 5 50 Z M64 50 L64 11 L9 11 L9 50 C9 51, 9 52, 9 52 L62 52 C63 52, 63 52, 64 52 C64 51, 64 51, 64 50 Z M69 7 L69 50 C69 52, 68 54, 67 55 C65 56, 64 57, 62 57 L3 57 C1 57, -1 56, -2 55 C-4 54, -4 52, -4 50 L-4 11 L5 11 L5 7Z "/>
+</svg>
+NEWS</a></li>
+<li><a role="menuitem" href="./ChatBot.html" class="OverlayMenu2-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M44 24 L55 13 L51 9 L40 20Z  M59 12 C60 12, 60 13, 60 13 C60 14, 60 14, 59 15 L14 61 C13 61, 13 61, 12 61 C11 61, 11 61, 10 61 L3 54 C3 53, 3 53, 3 52 C3 51, 3 51, 3 51 L49 5 C50 4, 50 4, 51 4 C51 4, 52 4, 52 5 Z M12 6 L15 8 L12 9 L11 12 L10 9 L6 8 L10 6 L11 3Z  M24 12 L31 14 L24 17 L22 24 L20 17 L13 14 L20 12 L22 5Z  M58 29 L61 30 L58 31 L57 35 L55 31 L52 30 L55 29 L57 26Z  M35 6 L38 8 L35 9 L34 12 L33 9 L29 8 L33 6 L34 3Z "/>
+</svg>
+EC&nbsp;AI</a></li>
+<li><a role="menuitem" href="./projects.html" class="OverlayMenu2-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M54 30 L55 41 C55 43, 54 44, 52 46 C50 47, 47 48, 43 49 C40 50, 36 50, 32 50 C28 50, 24 50, 20 49 C17 48, 14 47, 12 46 C10 44, 9 43, 9 41 L10 30 L30 36 C31 36, 31 37, 32 37 C32 37, 33 36, 34 36 Z M72 17 C73 17, 73 18, 73 18 C73 19, 73 19, 72 19 L32 32 C32 32, 32 32, 32 32 C32 32, 32 32, 31 32 L8 25 C7 25, 6 27, 6 29 C5 30, 5 33, 4 35 C6 36, 7 37, 7 39 C7 40, 6 42, 5 43 L7 58 C7 58, 7 59, 6 59 C6 59, 6 59, 6 59 L-1 59 C-2 59, -2 59, -2 59 C-2 59, -3 58, -2 58 L0 43 C-2 42, -2 40, -2 39 C-2 37, -2 36, 0 35 C0 30, 1 26, 3 23 L-9 19 C-9 19, -9 19, -9 18 C-9 18, -9 17, -9 17 L31 5 C32 5, 32 5, 32 5 C32 5, 32 5, 32 5"/>
+</svg>
+PROJECTS</a></li>
+</ul>
+</li>
+<li><a role="menuitem" href="./About-Us.html" class="OverlayMenu2-effect">ABOUT</a></li>
+   </ul>
+</div>
+
+</div>
+<form name="SiteSearch1_form" id="SiteSearch1_form" role="search" accept-charset="UTF-8" onsubmit="return searchPage(features)">
+<input type="text" id="SiteSearch1" name="SiteSearch1" value="" spellcheck="false" placeholder="Search " role="searchbox"></form>
+<input type="submit" id="Button1" onclick="searchPage();return false;" name="Search" value="Search">
+<div id="Layer2">
+<div id="Layer2-video"><video src="230384 Small.mp4" poster="pexels007.jpeg" autoplay loop muted playsinline></video>
+</div>
+<div id="wb_Icon1">
+<a href="#" onclick="HidePanel('PanelLayer', event);return false;"><div id="Icon1"><i class="fa fa-times"></i></div></a>
+</div>
+<div id="wb_Heading1">
+<h2 id="Heading1">EC</h2>
+</div>
+<div id="wb_OverlayMenu1">
+<div class="OverlayMenu1">
+<ul class="OverlayMenu1" role="menu">
+<li class="item-has-children">
+<a role="menuitem" href="#" class="OverlayMenu1-effect">MENU</a>
+<ul class="sub-menu" role="menu">
+<li><a role="menuitem" href="./Notes-&-Papers.html" class="OverlayMenu1-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M61 17 C62 18, 62 20, 62 22 L52 54 C52 56, 51 57, 49 58 C48 59, 46 59, 45 59 L12 59 C10 59, 8 59, 7 58 C5 56, 4 55, 3 53 C3 51, 2 50, 3 48 C3 48, 3 48, 3 47 C3 47, 3 46, 3 46 C3 46, 3 46, 3 45 C3 45, 3 45, 3 45 C3 44, 3 44, 3 44 C3 44, 4 43, 4 43 C4 43, 4 42, 5 42 C5 41, 6 40, 6 39 C7 38, 7 36, 7 36 C7 35, 7 35, 7 34 C7 34, 7 34, 7 33 C7 33, 7 33, 8 32 C8 32, 8 32, 8 32 C9 31, 9 30, 10 28 C10 27, 11 26, 11 25 C11 25, 11 25, 11 24 C11 23, 11 23, 11 23 C11 23, 11 22, 12 22 C12 22, 12 21, 12 21 C13 21, 13 20, 14 18 C14 17, 15 16, 15 15 C15 14, 15 14, 15 14 C15 13, 15 13, 15 13 C15 13, 15 12, 15 12 C15 12, 15 12, 16 11 C16 11, 16 11, 16 11 C16 10, 17 10, 17 10 C17 9, 17 9, 17 8 C17 8, 18 7, 18 7 C18 7, 18 6, 19 6 C19 6, 19 5, 20 5 C20 5, 20 5, 21 5 C21 5, 22 5, 23 5 L22 5 C23 5, 24 5, 24 5 L51 5 C53 5, 55 5, 56 7 C57 8, 57 9, 56 11 L46 44 C46 46, 45 48, 44 49 C43 50, 41 50, 39 50 L8 50 C8 50, 7 50, 7 51 C7 51, 7 52, 7 52 C7 54, 9 55, 12 55 L45 55 C46 55, 46 55, 47 54 C48 54, 48 53, 48 53 L59 18 C59 17, 59 16, 59 16 C60 16, 61 16, 61 17 Z M23 17 C23 17, 23 18, 23 18 C23 18, 24 18, 24 18 L46 18 C46 18, 46 18, 47 18 C47 18, 47 17, 47 17 L48 15 C48 15, 48 14, 48 14 C48 14, 47 14, 47 14 L25 14 C25 14, 25 14, 25 14 C24 14, 24 15, 24 15 Z M20 26 C20 27, 20 27, 20 27 C20 27, 21 27, 21 27 L43 27 C43 27, 43 27, 44 27 C44 27, 44 27, 44 26 L45 24 C45 24, 45 23, 45 23 C45 23, 45 23, 44 23 L22 23 C22 23, 22 23, 22 23 C21 23, 21 24, 21 24"/>
+</svg>
+NOTES&nbsp;&amp;&nbsp;PAPERS</a></li>
+<li><a role="menuitem" href="./Information.html" class="OverlayMenu1-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M12 49 L12 53 L8 53 C7 53, 7 53, 7 53 L7 52 L5 52 C5 52, 5 52, 5 52 L5 50 C5 50, 5 50, 5 50 L7 50 L7 49 C7 49, 7 49, 8 49 Z M12 40 L12 44 L8 44 C7 44, 7 44, 7 44 L7 43 L5 43 C5 43, 5 43, 5 42 L5 41 C5 41, 5 41, 5 41 L7 41 L7 40 C7 40, 7 40, 8 40 Z M12 30 L12 35 L8 35 C7 35, 7 35, 7 34 L7 34 L5 34 C5 34, 5 34, 5 33 L5 32 C5 32, 5 32, 5 32 L7 32 L7 31 C7 31, 7 30, 8 30 Z M12 21 L12 26 L8 26 C7 26, 7 26, 7 25 L7 25 L5 25 C5 25, 5 25, 5 24 L5 23 C5 23, 5 22, 5 22 L7 22 L7 22 C7 21, 7 21, 8 21 Z M12 12 L12 17 L8 17 C7 17, 7 17, 7 16 L7 16 L5 16 C5 16, 5 15, 5 15 L5 14 C5 13, 5 13, 5 13 L7 13 L7 13 C7 12, 7 12, 8 12 Z M50 6 L50 59 C50 60, 50 61, 49 61 C49 62, 48 62, 47 62 L17 62 C16 62, 15 62, 15 61 C14 61, 14 60, 14 59 L14 6 C14 5, 14 5, 15 4 C15 3, 16 3, 17 3 L47 3 C48 3, 49 3, 49 4 C50 5, 50 5, 50 6 Z M60 50 L60 52 C60 52, 59 52, 59 52 L57 52 L57 53 C57 53, 57 53, 57 53 L53 53 L53 49 L57 49 C57 49, 57 49, 57 49 L57 50 L59 50 C59 50, 60 50, 60 50 Z M60 41 L60 42 C60 43, 59 43, 59 43 L57 43 L57 44 C57 44, 57 44, 57 44 L53 44 L53 40 L57 40 C57 40, 57 40, 57 40 L57 41 L59 41 C59 41, 60 41, 60 41 Z M60 32 L60 33 C60 34, 59 34, 59 34 L57 34 L57 34 C57 35, 57 35, 57 35 L53 35 L53 30 L57 30 C57 30, 57 31, 57 31 L57 32 L59 32 C59 32, 60 32, 60 32 Z M60 23 L60 24 C60 25, 59 25, 59 25 L57 25 L57 25 C57 26, 57 26, 57 26 L53 26 L53 21 L57 21 C57 21, 57 21, 57 22 L57 22 L59 22 C59 22, 60 23, 60 23 Z M60 14 L60 15 C60 15, 59 16, 59 16 L57 16 L57 16 C57 17, 57 17, 57 17 L53 17 L53 12 L57 12 C57 12, 57 12, 57 13 L57 13 L59 13 C59 13, 60 13, 60 14"/>
+</svg>
+INFORMATION</a></li>
+<li><a role="menuitem" href="./Shop.html" class="OverlayMenu1-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M24 50 C25 51, 26 52, 26 53 C26 54, 25 55, 24 56 C23 57, 22 57, 21 57 C20 57, 19 57, 18 56 C17 55, 16 54, 16 53 C16 52, 17 51, 18 50 C19 49, 20 48, 21 48 C22 48, 23 49, 24 50 Z M56 50 C57 51, 58 52, 58 53 C58 54, 57 55, 56 56 C55 57, 54 57, 53 57 C52 57, 51 57, 50 56 C49 55, 48 54, 48 53 C48 52, 49 51, 50 50 C51 49, 52 48, 53 48 C54 48, 55 49, 56 50 Z M62 14 L62 32 C62 33, 62 33, 61 34 C61 34, 61 34, 60 35 L23 39 C23 40, 23 41, 23 41 C23 42, 23 43, 22 44 L55 44 C56 44, 56 44, 57 44 C57 45, 58 45, 58 46 C58 47, 57 47, 57 48 C56 48, 56 48, 55 48 L19 48 C18 48, 18 48, 17 48 C17 47, 16 47, 16 46 C16 46, 16 45, 17 45 C17 44, 17 44, 17 44 C17 43, 18 43, 18 42 C18 42, 19 41, 19 41 L12 12 L5 12 C4 12, 4 11, 3 11 C3 11, 3 10, 3 9 C3 9, 3 8, 3 8 C4 7, 4 7, 5 7 L14 7 C14 7, 15 7, 15 7 C15 8, 16 8, 16 8 C16 8, 16 8, 16 9 C16 9, 17 9, 17 10 C17 10, 17 10, 17 11 C17 11, 17 12, 17 12 L60 12 C60 12, 61 12, 61 12 C62 13, 62 13, 62 14"/>
+</svg>
+SHOP</a></li>
+<li><a role="menuitem" href="./Links.html" class="OverlayMenu1-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M50 38 L50 50 C50 52, 49 55, 47 57 C45 59, 42 60, 40 60 L10 60 C7 60, 5 59, 3 57 C1 55, 0 52, 0 50 L0 20 C0 17, 1 15, 3 13 C5 11, 7 10, 10 10 L35 10 C35 10, 36 10, 36 10 C36 10, 36 10, 36 11 L36 13 C36 13, 36 14, 36 14 C36 14, 35 14, 35 14 L10 14 C8 14, 7 15, 6 16 C5 17, 4 18, 4 20 L4 50 C4 51, 5 52, 6 54 C7 55, 8 55, 10 55 L40 55 C41 55, 43 55, 44 54 C45 52, 45 51, 45 50 L45 38 C45 38, 45 38, 46 37 C46 37, 46 37, 47 37 L49 37 C49 37, 49 37, 50 37 C50 38, 50 38, 50 38 Z M64 7 L64 26 C64 26, 63 27, 63 27 C63 28, 62 28, 61 28 C61 28, 60 28, 60 27 L53 21 L30 44 C30 44, 30 45, 29 45 C29 45, 29 44, 29 44 L24 40 C24 40, 24 40, 24 39 C24 39, 24 39, 24 38 L48 15 L41 9 C41 8, 41 8, 41 7 C41 7, 41 6, 41 6 C42 5, 42 5, 43 5 L61 5 C62 5, 63 5, 63 6 C63 6, 64 7, 64 7"/>
+</svg>
+IMPORTANT&nbsp;LINKS</a></li>
+<li><a role="menuitem" href="./ChatBot.html" class="OverlayMenu1-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M44 24 L55 13 L51 9 L40 20Z  M59 12 C60 12, 60 13, 60 13 C60 14, 60 14, 59 15 L14 61 C13 61, 13 61, 12 61 C11 61, 11 61, 10 61 L3 54 C3 53, 3 53, 3 52 C3 51, 3 51, 3 51 L49 5 C50 4, 50 4, 51 4 C51 4, 52 4, 52 5 Z M12 6 L15 8 L12 9 L11 12 L10 9 L6 8 L10 6 L11 3Z  M24 12 L31 14 L24 17 L22 24 L20 17 L13 14 L20 12 L22 5Z  M58 29 L61 30 L58 31 L57 35 L55 31 L52 30 L55 29 L57 26Z  M35 6 L38 8 L35 9 L34 12 L33 9 L29 8 L33 6 L34 3Z "/>
+</svg>
+EC&nbsp;AI</a></li>
+<li><a role="menuitem" href="./news.html" class="OverlayMenu1-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M32 20 L19 20 L19 34 L32 34Z  M37 43 L37 48 L14 48 L14 43Z  M37 16 L37 39 L14 39 L14 16Z  M60 43 L60 48 L41 48 L41 43Z  M60 34 L60 39 L41 39 L41 34Z  M60 25 L60 29 L41 29 L41 25Z  M60 16 L60 20 L41 20 L41 16Z  M5 50 L5 16 L0 16 L0 50 C0 51, 0 51, 1 52 C1 52, 2 52, 3 52 C3 52, 4 52, 4 52 C5 51, 5 51, 5 50 Z M64 50 L64 11 L9 11 L9 50 C9 51, 9 52, 9 52 L62 52 C63 52, 63 52, 64 52 C64 51, 64 51, 64 50 Z M69 7 L69 50 C69 52, 68 54, 67 55 C65 56, 64 57, 62 57 L3 57 C1 57, -1 56, -2 55 C-4 54, -4 52, -4 50 L-4 11 L5 11 L5 7Z "/>
+</svg>
+NEWS</a></li>
+<li><a role="menuitem" href="./projects.html" class="OverlayMenu1-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M54 30 L55 41 C55 43, 54 44, 52 46 C50 47, 47 48, 43 49 C40 50, 36 50, 32 50 C28 50, 24 50, 20 49 C17 48, 14 47, 12 46 C10 44, 9 43, 9 41 L10 30 L30 36 C31 36, 31 37, 32 37 C32 37, 33 36, 34 36 Z M72 17 C73 17, 73 18, 73 18 C73 19, 73 19, 72 19 L32 32 C32 32, 32 32, 32 32 C32 32, 32 32, 31 32 L8 25 C7 25, 6 27, 6 29 C5 30, 5 33, 4 35 C6 36, 7 37, 7 39 C7 40, 6 42, 5 43 L7 58 C7 58, 7 59, 6 59 C6 59, 6 59, 6 59 L-1 59 C-2 59, -2 59, -2 59 C-2 59, -3 58, -2 58 L0 43 C-2 42, -2 40, -2 39 C-2 37, -2 36, 0 35 C0 30, 1 26, 3 23 L-9 19 C-9 19, -9 19, -9 18 C-9 18, -9 17, -9 17 L31 5 C32 5, 32 5, 32 5 C32 5, 32 5, 32 5"/>
+</svg>
+PROJECTS</a></li>
+<li><a role="menuitem" href="./ChatRoom.html" class="OverlayMenu1-effect"><svg class="overlay-icon" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg">
+   <path d="M15 19 C16 18, 16 17, 16 16 C16 15, 16 15, 15 14 C15 13, 14 13, 13 13 C12 13, 11 14, 10 14 C10 15, 9 15, 9 16 C9 17, 10 18, 10 19 C11 19, 12 20, 13 20 C14 20, 15 19, 15 19 Z M43 35 C43 34, 43 33, 42 33 C41 32, 41 32, 40 32 C39 32, 38 32, 38 33 C37 33, 37 34, 37 35 C37 35, 37 36, 38 36 C38 37, 39 37, 40 37 C41 37, 41 37, 42 36 C43 36, 43 35, 43 35 Z M34 19 C34 18, 34 17, 34 16 C34 15, 34 15, 34 14 C33 13, 32 13, 31 13 C30 13, 29 14, 29 14 C28 15, 27 15, 27 16 C27 17, 28 18, 29 19 C29 19, 30 20, 31 20 C32 20, 33 19, 34 19 Z M57 35 C57 34, 57 33, 56 33 C56 32, 55 32, 54 32 C53 32, 53 32, 52 33 C52 33, 51 34, 51 35 C51 35, 52 36, 52 36 C53 37, 53 37, 54 37 C55 37, 56 37, 56 36 C57 36, 57 35, 57 35 Z M48 20 C47 20, 46 20, 45 20 C41 20, 37 21, 34 23 C31 25, 28 27, 26 30 C24 34, 23 37, 23 41 C23 43, 23 44, 24 46 C23 46, 22 46, 22 46 C21 46, 20 46, 20 46 C19 46, 19 46, 18 46 C17 46, 17 46, 16 46 C16 46, 15 46, 14 45 C13 45, 13 45, 12 45 L3 49 L6 42 C-1 37, -4 31, -4 24 C-4 20, -3 16, -1 13 C1 10, 5 7, 9 5 C13 3, 17 2, 22 2 C26 2, 30 3, 33 5 C37 6, 40 8, 43 11 C45 14, 47 17, 48 20 Z M69 40 C69 43, 68 46, 66 48 C65 51, 63 53, 60 55 L62 62 L55 58 C51 59, 48 59, 47 59 C43 59, 39 58, 36 57 C32 55, 30 53, 28 50 C26 47, 25 44, 25 40 C25 37, 26 34, 28 31 C30 28, 32 26, 36 24 C39 22, 43 22, 47 22 C51 22, 54 22, 58 24 C61 26, 64 28, 66 31 C68 34, 69 37, 69 40"/>
+</svg>
+CHATROOM</a></li>
+</ul>
+</li>
+<li><a role="menuitem" href="./Project2.html" class="OverlayMenu1-effect">ABOUT</a></li>
+<li><a role="menuitem" href="./index.html" class="OverlayMenu1-effect">HOME</a></li>
+   </ul>
+</div>
+
+</div>
+</div>
+</div>
+<div id="wb_LayoutGrid9">
+<div id="LayoutGrid9">
+<div class="row">
+<div class="col-1">
+<div id="wb_Text8">
+<span style="color:#656565;font-family:Arial;font-size:16px;">© 2025 EC SCHOLAR NET. All Rights Reserved.</span>
+</div>
+</div>
+<div class="col-2">
+<label for="" id="Label4">Follow us:</label>
+<div id="wb_FontAwesomeIcon5">
+<a href="https://www.facebook.com/profile.php?id=61570048799341"><div id="FontAwesomeIcon5"><i class="fa fa-facebook-f"></i></div></a>
+</div>
+<div id="wb_FontAwesomeIcon6">
+<a href="https://github.com/aniket101998/eandc"><div id="FontAwesomeIcon6"><i class="fa fa-github"></i></div></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="Layer1">
+<div id="wb_PanelMenu1">
+<a href="#PanelLayer" id="PanelMenu1">
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+</a>
+</div>
+</div>
+</body>
+</html>

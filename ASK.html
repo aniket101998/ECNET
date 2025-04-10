@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amplitude Shift Keying (ASK) Simulation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .graph-container {
+      margin: 20px 0;
+    }
+
+    canvas {
+      width: 100%;
+      height: 300px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Amplitude Shift Keying (ASK) Simulation</h1>
+
+    <div class="input-group">
+      <label for="fc">Carrier Frequency (fc):</label>
+      <input type="number" id="fc" placeholder="Enter carrier frequency (e.g., 100)" value="100">
+    </div>
+
+    <div class="input-group">
+      <label for="fp">Message Signal Frequency (fp):</label>
+      <input type="number" id="fp" placeholder="Enter message frequency (e.g., 10)" value="10">
+    </div>
+
+    <div class="input-group">
+      <label for="amp">Amplitude:</label>
+      <input type="number" id="amp" placeholder="Enter amplitude (e.g., 4)" value="4">
+    </div>
+
+    <button onclick="simulateASK()">Generate ASK Signal</button>
+    <button onclick="downloadPDF()">Download PDF</button>
+
+    <div class="graph-container">
+      <h3>Carrier Signal</h3>
+      <canvas id="carrierSignalCanvas"></canvas>
+    </div>
+
+    <div class="graph-container">
+      <h3>Binary Message Signal</h3>
+      <canvas id="messageSignalCanvas"></canvas>
+    </div>
+
+    <div class="graph-container">
+      <h3>ASK Modulated Signal</h3>
+      <canvas id="askSignalCanvas"></canvas>
+    </div>
+  </div>
+
+  <script>
+    function simulateASK() {
+      const fc = parseFloat(document.getElementById("fc").value);
+      const fp = parseFloat(document.getElementById("fp").value);
+      const amp = parseFloat(document.getElementById("amp").value);
+      const t = Array.from({ length: 1001 }, (_, i) => i * 0.001);
+      const carrier = t.map(time => amp * Math.sin(2 * Math.PI * fc * time));
+      const message = t.map(time => (amp / 2) * (Math.sign(Math.sin(2 * Math.PI * fp * time)) + 1));
+      const ask = carrier.map((c, i) => c * message[i]);
+
+      function plotGraph(canvasId, label, data) {
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: t,
+            datasets: [{
+              label: label,
+              data: data,
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+              fill: false
+            }]
+          },
+          options: { responsive: true }
+        });
+      }
+
+      plotGraph('carrierSignalCanvas', 'Carrier Signal', carrier);
+      plotGraph('messageSignalCanvas', 'Binary Message Signal', message);
+      plotGraph('askSignalCanvas', 'ASK Signal', ask);
+    }
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("Amplitude Shift Keying (ASK) Simulation", 10, 10);
+      doc.text("Carrier Signal", 10, 20);
+      doc.addImage(document.getElementById('carrierSignalCanvas').toDataURL(), 'JPEG', 10, 30, 180, 60);
+      doc.text("Binary Message Signal", 10, 100);
+      doc.addImage(document.getElementById('messageSignalCanvas').toDataURL(), 'JPEG', 10, 110, 180, 60);
+      doc.text("ASK Signal", 10, 180);
+      doc.addImage(document.getElementById('askSignalCanvas').toDataURL(), 'JPEG', 10, 190, 180, 60);
+      doc.save("ASK_Simulation.pdf");
+    }
+  </script>
+</body>
+</html>

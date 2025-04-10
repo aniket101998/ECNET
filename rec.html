@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Page</title>
+<meta name="generator" content="WYSIWYG Web Builder 18 - http://www.wysiwygwebbuilder.com">
+<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<link href="css/E&C.css" rel="stylesheet">
+<link href="css/rec.css" rel="stylesheet">
+</head>
+<body>
+<div id="Html1" style="position:absolute;left:3px;top:0px;width:100%;height:416px;z-index:0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reciprocity Theorem Verification</title>
+  </head>
+<body>
+  <div class="container">
+    <h1>Reciprocity Theorem Verification</h1>
+
+    <div class="input-group">
+      <label for="voltage">Voltage Source (V):</label>
+      <input type="number" id="voltage" placeholder="Enter voltage (e.g., 10)">
+    </div>
+
+    <div class="input-group">
+      <label for="resistor1">Resistance R1 (Ω):</label>
+      <input type="number" id="resistor1" placeholder="Enter resistance R1">
+    </div>
+
+    <div class="input-group">
+      <label for="resistor2">Resistance R2 (Ω):</label>
+      <input type="number" id="resistor2" placeholder="Enter resistance R2">
+    </div>
+
+    <div class="input-group">
+      <label for="loadResistor">Load Resistance RL (Ω):</label>
+      <input type="number" id="loadResistor" placeholder="Enter load resistance RL">
+    </div>
+
+    <button onclick="verifyReciprocity()">Verify Reciprocity Theorem</button>
+
+    <div class="output" id="output"></div>
+
+    <div class="info">
+      <h2>Reciprocity Theorem</h2>
+      <p>The Reciprocity Theorem states that in a linear, bilateral network, the current at a given point in the circuit due to a single source at another point is the same as the current at the original source's location if the source and measurement point are interchanged.</p>
+    </div>
+  </div>
+
+  <script>
+    function verifyReciprocity() {
+      const voltage = parseFloat(document.getElementById("voltage").value);
+      const resistor1 = parseFloat(document.getElementById("resistor1").value);
+      const resistor2 = parseFloat(document.getElementById("resistor2").value);
+      const loadResistor = parseFloat(document.getElementById("loadResistor").value);
+      const output = document.getElementById("output");
+
+      output.innerHTML = ""; // Clear previous results
+
+      if (isNaN(voltage) || isNaN(resistor1) || isNaN(resistor2) || isNaN(loadResistor)) {
+        output.innerHTML = "Please provide valid values for all inputs.";
+        return;
+      }
+
+      // Case 1: Voltage source at Node 1
+      const r_eq1 = resistor1 + ((resistor2 * loadResistor) / (resistor2 + loadResistor));
+      const i1 = voltage / r_eq1;
+
+      // Case 2: Voltage source at Load Resistor (Node 2)
+      const r_eq2 = loadResistor + ((resistor1 * resistor2) / (resistor1 + resistor2));
+      const i2 = voltage / r_eq2;
+
+      output.innerHTML = `
+        <p><strong>Current (I1) with source at Node 1:</strong> ${i1.toFixed(2)} A</p>
+        <p><strong>Current (I2) with source at Node 2:</strong> ${i2.toFixed(2)} A</p>
+        <p>${Math.abs(i1 - i2) < 0.01 ? "The Reciprocity Theorem is verified." : "The Reciprocity Theorem is not verified."}</p>
+      `;
+    }
+  </script>
+</body>
+</html></div>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ohm's Law with Dynamic Graphs</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> <!-- Added plugin -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .chart-container {
+      margin-top: 30px;
+    }
+
+    .output-container {
+      margin-top: 20px;
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .output-container h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Ohm's Law with Dynamic Graphs</h1>
+
+    <div class="input-group">
+      <label for="resistance">Resistance (Ω):</label>
+      <input type="number" id="resistance" placeholder="Enter resistance value">
+    </div>
+
+    <div class="input-group">
+      <label for="maxVoltage">Max Voltage (V):</label>
+      <input type="number" id="maxVoltage" placeholder="Enter max voltage value">
+    </div>
+
+    <button onclick="updateGraph()">Generate Graph</button>
+
+    <div class="chart-container">
+      <canvas id="ohmsLawChart"></canvas>
+    </div>
+
+    <div class="output-container" id="outputContainer" style="display: none;">
+      <h2>Explanation</h2>
+      <p id="explanation"></p>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Chart.js
+    const ctx = document.getElementById('ohmsLawChart').getContext('2d');
+    const ohmsLawChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [], // Voltage values (X-axis)
+        datasets: [
+          {
+            label: 'Current (I) vs Voltage (V)',
+            data: [], // Current values (Y-axis)
+            borderColor: '#4caf50',
+            borderWidth: 2,
+            fill: false,
+            // Adding the data labels
+            datalabels: {
+              align: 'top',
+              color: '#4caf50',
+              font: {
+                size: 10,
+              },
+              formatter: function(value) {
+                return value.toFixed(2); // Showing the current values with 2 decimal points
+              },
+            }
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Voltage (V)',
+            },
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Current (A)',
+            },
+          },
+        },
+        plugins: {
+          datalabels: {
+            display: true,
+            color: '#4caf50', // Label color
+          },
+        },
+      },
+    });
+
+    // Function to update the graph based on user input
+    function updateGraph() {
+      const resistance = parseFloat(document.getElementById('resistance').value);
+      const maxVoltage = parseFloat(document.getElementById('maxVoltage').value);
+      const outputContainer = document.getElementById('outputContainer');
+      const explanation = document.getElementById('explanation');
+
+      if (isNaN(resistance) || resistance <= 0) {
+        alert('Please enter a valid positive resistance value.');
+        return;
+      }
+
+      if (isNaN(maxVoltage) || maxVoltage <= 0) {
+        alert('Please enter a valid positive max voltage value.');
+        return;
+      }
+
+      // Generate data for the graph
+      const voltages = [];
+      const currents = [];
+      for (let v = 0; v <= maxVoltage; v++) {
+        voltages.push(v);
+        currents.push(v / resistance); // Ohm's Law: I = V / R
+      }
+
+      // Update the chart
+      ohmsLawChart.data.labels = voltages;
+      ohmsLawChart.data.datasets[0].data = currents;
+      ohmsLawChart.update();
+
+      // Update explanation section
+      outputContainer.style.display = 'block';
+      explanation.innerHTML = `
+        <p>According to Ohm's Law, the current (I) in a circuit is directly proportional to the voltage (V) and inversely proportional to the resistance (R).</p>
+        <p>In this simulation:</p>
+        <ul>
+          <li><strong>Resistance:</strong> ${resistance} Ω</li>
+          <li><strong>Maximum Voltage:</strong> ${maxVoltage} V</li>
+          <li>As the voltage increases from 0V to ${maxVoltage}V, the current increases linearly, following the formula <strong>I = V / R</strong>.</li>
+          <li>The graph visualizes this relationship, showing how current changes with varying voltage for a fixed resistance.</li>
+        </ul>
+      `;
+    }
+  </script>
+</body>
+</html>
