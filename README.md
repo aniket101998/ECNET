@@ -46,10 +46,6 @@ EC Scholar Net aims to bridge the gap between theoretical knowledge and practica
 - **Hosting:** Localhost / Static Deployment  
 - **Tools:** Visual Studio Code, GitHub, Oracle VM (Ubuntu)  
 
-## 📸 Screenshots
-
-_Add screenshots here showing UI sections like the chatbot, store, notes interface, etc._
-
 ## 🧾 How to Run Locally
 
 1. Clone the repository:  
