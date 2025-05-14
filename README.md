@@ -29,7 +29,7 @@ EC Scholar Net aims to bridge the gap between theoretical knowledge and practica
 
 | Section                | Description |
 |------------------------|-------------|
-| 🧠 **AI Chatbot**       | A simple offline AI chatbot (EC Buddy) for resolving basic queries. |
+| 🧠 **AI Chatbot**       | A simple AI chatbot (EC Buddy) for resolving basic queries. |
 | 📘 **Notes**            | Subject-wise academic notes for EC students. |
 | 🧪 **Simulations**      | Reference links and theory for basic electronic circuit simulations. |
 | 💬 **Student Chatroom** | A simple chat interface for peer-to-peer discussion. |
