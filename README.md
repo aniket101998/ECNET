@@ -1,4 +1,4 @@
-# ecnet
+
 # EC Scholar Net 🎓📡
 
 **EC Scholar Net** is a comprehensive web-based platform designed to assist Electronics and Communication Engineering students with academic and project-related resources. Developed as a final-year project, this platform serves as a one-stop hub for learning, simulation, collaboration, and component purchasing.
