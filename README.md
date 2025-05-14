@@ -48,4 +48,20 @@ EC Scholar Net aims to bridge the gap between theoretical knowledge and practica
 
 ## 🧾 How to Run Locally
 
-1. Clone the repository:  
+1. Clone the repository:
+
+
+## 📄 License
+
+This project is for educational use only and not intended for commercial purposes.
+
+## ✨ Acknowledgements
+
+- Thanks to our guide **Dr. P. R. Bokde** for constant support and feedback.
+- Inspired by the needs of EC students for centralized academic assistance.
+
+---
+
+> “Project developed by me and my friends under the guidance of Dr. P.R. Bokde Sir – PBCOE, Nagpur”
+
+   
