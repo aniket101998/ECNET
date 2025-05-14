@@ -62,6 +62,6 @@ This project is for educational use only and not intended for commercial purpose
 
 ---
 
-> “Project developed by me and my friends under the guidance of Dr. P.R. Bokde Sir – PBCOE, Nagpur”
+Project developed by me and my friends under the guidance of Dr. P.R. Bokde Sir – PBCOE, Nagpur
 
    
